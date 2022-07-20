@@ -1,0 +1,11 @@
+.container-1{
+    display: flex;
+}
+
+.like, .comment, .share{
+    width: 33.33%;
+}
+
+#likeIcon, #commentIcon, #shareIcon{
+    margin-right: 1rem;
+}
