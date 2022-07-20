@@ -10,7 +10,7 @@ import org.springframework.lang.NonNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection="user")
-public class user {
+public class userEntity {
     @NonNull
     private String userId;
     private String userName;
