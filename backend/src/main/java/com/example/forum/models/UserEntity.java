@@ -1,3 +1,6 @@
+/*
+ * For Connecting User Entity Model to the database
+ */
 package com.example.forum.models;
 
 import lombok.Data;
@@ -38,7 +41,7 @@ public class UserEntity {
 
     private Date createdAt;
 
-    private Date lastLoginTime;
+    // private Date lastLoginTime;
 
     // @OneToOne
     // @PrimaryKeyJoinColumn

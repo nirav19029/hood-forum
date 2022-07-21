@@ -5,18 +5,50 @@ package com.example.forum.dto;
 import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import javax.validation.constraints.NotNull;
+
+import java.util.ArrayList;
+
+import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+
+
+class Like {
+    private String useId;
+}
+
+
+class Reply{
+
+    private String userId;
+    private String postId;
+
+    private String description;
+
+
+    private Like[] likes  ;
+
+
+}
+
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post{
-    @NotNull
     private String title;
+    @Id
+    @JsonIgnore
+
+    
+    @JsonProperty("_id")
+    private String postId;
     private String userId;
     private String createdOn;
     private String description;
-    private String reply;
-    
+
+    private ArrayList<Reply> replies ;
 }
