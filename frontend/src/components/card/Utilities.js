@@ -8,15 +8,15 @@ import "./Utilities.css";
 const Utilities = () => {
   return (
     <div className="container-1">
-      <Button variant="outlined" className="like">
+      <Button variant="" className="like">
         <ThumbUpOffAltIcon id="likeIcon" />
         Like
       </Button>
-      <Button variant="outlined" className="comment">
+      <Button variant="" className="comment">
         <CommentOutlinedIcon id="commentIcon" />
         Comment
       </Button>
-      <Button variant="outlined" className="share">
+      <Button variant="" className="share">
         <ShareIcon id="shareIcon" />
         Share
       </Button>

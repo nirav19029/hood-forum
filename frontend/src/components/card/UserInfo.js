@@ -15,7 +15,7 @@ const UserInfo = () => {
         </div>
       </div>
       <div className="follow">
-        <Button variant="outlined">Follow</Button>
+        <Button variant="outlined">+ Follow</Button>
         <MoreVertIcon />
       </div>
     </div>

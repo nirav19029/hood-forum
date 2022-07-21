@@ -6,6 +6,7 @@ const App = () => {
   return (
     <div>
       <Card />
+      <Card />
     </div>
   );
 };

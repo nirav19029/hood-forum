@@ -1,10 +1,12 @@
 import React from "react";
 import UserInfo from "./UserInfo";
 import Utilities from "./Utilities";
-
+import addPostButton from "./addPostButton";
 const Card = () => {
   return (
+  
     <div className="card-container">
+      <div>
       {/* Userinfo */}
       <UserInfo />
       {/* Content */}
@@ -24,7 +26,12 @@ const Card = () => {
       <br />
       {/* Like,comment and share */}
       <Utilities />
+     
+      </div>
+     
     </div>
+
+    
   );
 };
 
