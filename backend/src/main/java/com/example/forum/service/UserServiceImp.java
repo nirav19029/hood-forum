@@ -21,20 +21,12 @@ public class UserServiceImp implements UserService{
 
     @Override
     public User findOne(int id) {
-        // TODO Auto-generated method stub
-        return null;
+        return userRepositoryService.findOne(id);
     }
 
     @Override
-    public User findByUserName(String username) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public User save(User user) {
-        // TODO Auto-generated method stub
-        return null;
+    public void save(User user) {
+        userRepositoryService.save(user);
     }
     
 }

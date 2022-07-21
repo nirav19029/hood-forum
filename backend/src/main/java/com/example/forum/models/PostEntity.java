@@ -8,9 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @Document(collection="post")
 @NoArgsConstructor
-public class postEntity {
+public class PostEntity {
     @Id
-    private String userId;         //primary-Key
+    private int userId;         //primary-Key
+    private int id;
     private String createdOn;
     private String description;
     private String title;
