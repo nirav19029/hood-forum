@@ -1,19 +1,16 @@
-import * as React from 'react';
-import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
-import PostAddIcon from '@mui/icons-material/PostAdd';
+import React from "react";
+import Box from "@mui/material/Box";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 
-const AddPostButton= () => {
+const AddPostButton = () => {
   return (
-  <div>
-    <Fab color="primary">
-        <PostAddIcon />
+    <div>
+      <Fab color="primary" aria-label="add">
+        <AddIcon />
       </Fab>
-      </div>
-   
+    </div>
   );
-}
+};
 
 export default AddPostButton;
-
-

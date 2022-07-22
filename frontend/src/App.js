@@ -8,6 +8,9 @@ const App = () => {
     <div>
       <Card />
       <Card />
+
+      <br />
+      <br />
       <AddPostButton />
     </div>
   );
