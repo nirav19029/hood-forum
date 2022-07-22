@@ -22,16 +22,16 @@ public class UserController {
 	public static final String GET_API="user";
 	public static final String POST_API="createPost";
 
-    @Autowired
-    private UserService userService;
+    // @Autowired
+    // private UserService userService;
 
-    @Autowired
-    private UserProfileService userProfileService;
+    // @Autowired
+    // private UserProfileService userProfileService;
 
-    @GetMapping(GET_API)
-    public String findByUserNameAndProfilePage(@PathVariable String username,
-    Model model){
-        UserProfile userProfile;
-        return "";
-    }
+    // @GetMapping(GET_API)
+    // public String findByUserNameAndProfilePage(@PathVariable String username,
+    // Model model){
+    //     UserProfile userProfile;
+    //     return "";
+    // }
 }

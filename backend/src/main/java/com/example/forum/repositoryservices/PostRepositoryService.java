@@ -1,16 +1,18 @@
 package com.example.forum.repositoryservices;
 
 import java.util.List;
-import com.example.forum.models.PostEntity;
+
+import com.example.forum.dto.Post;
+
 
 public interface PostRepositoryService {
 
-    public List<PostEntity> getAllPost();
+    public List<Post> getAllPost();
 
-    public PostEntity createPost(PostEntity postEntity);
+    public Post createPost(Post post);
 
-    public PostEntity findById(int id);
+    public Post findById(String id) throws Exception;
 
-    public void delete(PostEntity postEntity) ;
+    public String delete(String id) throws Exception;
     
 }

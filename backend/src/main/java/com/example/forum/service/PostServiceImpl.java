@@ -1,15 +1,11 @@
 package com.example.forum.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.el.ELException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.forum.dto.Post;
-import com.example.forum.models.PostEntity;
 import com.example.forum.repositoryservices.PostRepositoryService;
 
 @Service
@@ -24,41 +20,33 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post createPost(PostEntity postEntity) {
-        return postRepositoryService.createPost(postEntity);
+    public Post createPost(Post post) {
+        return postRepositoryService.createPost(post);
     }
 
     @Override
-    public Post updatePost(int id, PostEntity postRequest) {
+    public Post updatePost(String id, Post postRequest) throws Exception {
         try {
-            PostEntity postEntity = postRepositoryService.findById(id);
-            postEntity.setTitle(postRequest.getTitle());
-            postEntity.setDescription(postRequest.getDescription());
-            postEntity.setCreatedOn(postRequest.getCreatedOn());
-            return postEntity;
+            Post post = postRepositoryService.findById(id);
+            post.setTitle(postRequest.getTitle());
+            post.setDescription(postRequest.getDescription());
+            post.setCreatedOn(postRequest.getCreatedOn());
+            return post;
         } catch (Exception e) {
             throw (e);
         }
     }
 
     @Override
-    public void deletePost(int id) {
-        try {
-            PostEntity postEntity = postRepositoryService.findById(id);
-            postRepositoryService.delete(postEntity);
-
-        } catch (Exception e) {
-            throw(e);
-        }
-        
+    public String deletePost(String id) throws Exception{
+        return postRepositoryService.delete(id);
     }
 
     @Override
-    public PostEntity getPostById(int id) {
+    public Post getPostById(String id) throws Exception {
         try {
-            PostEntity postEntity = postRepositoryService.findById(id);
-            return postEntity;
-
+            Post post = postRepositoryService.findById(id);
+            return post;
         } catch (Exception e) {
             throw(e);
         }
