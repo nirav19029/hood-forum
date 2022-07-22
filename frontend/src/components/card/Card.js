@@ -1,7 +1,7 @@
 import React from "react";
 import UserInfo from "./UserInfo";
 import Utilities from "./Utilities";
-import addPostButton from "./addPostButton";
+
 const Card = () => {
   return (
   
