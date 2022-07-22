@@ -3,8 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-import IconButton from "@mui/material/IconButton";
-import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import Stack from "@mui/material/Stack";
 
 const style = {
@@ -38,17 +37,18 @@ export default function BasicModal() {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <label>Enter your topic to discuss</label>
             <br />
-            <input></input>
+            <input required />
           </Typography>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             <label>Description</label>
             <br />
-            <textarea style={{ width: "100%", height: "50%" }}>
+            <textarea required style={{ width: "100%", height: "50%" }}>
               sadasdfdsfjsdfsod
             </textarea>
           </Typography>
           <Stack direction="row" alignItems="center" spacing={2}>
             <Button variant="contained" component="label">
+              <AddAPhotoIcon style={{ marginRight: "10px" }} />
               Add Photo
               <input hidden accept="image/*" multiple type="file" />
             </Button>
