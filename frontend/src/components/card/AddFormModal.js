@@ -3,6 +3,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import IconButton from "@mui/material/IconButton";
+import PhotoCamera from "@mui/icons-material/PhotoCamera";
+import Stack from "@mui/material/Stack";
 
 const style = {
   position: "absolute",
@@ -44,6 +47,12 @@ export default function BasicModal() {
               sadasdfdsfjsdfsod
             </textarea>
           </Typography>
+          <Stack direction="row" alignItems="center" spacing={2}>
+            <Button variant="contained" component="label">
+              Add Photo
+              <input hidden accept="image/*" multiple type="file" />
+            </Button>
+          </Stack>
         </Box>
       </Modal>
     </div>
