@@ -1,10 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
-import Stack from "@mui/material/Stack";
+import "./AddFormModal.css";
 
 const style = {
   position: "absolute",
@@ -29,30 +28,57 @@ export default function BasicModal() {
       <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
-        onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            <label>Enter your topic to discuss</label>
-            <br />
-            <input required />
-          </Typography>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            <label>Description</label>
-            <br />
-            <textarea required style={{ width: "100%", height: "50%" }}>
-              sadasdfdsfjsdfsod
-            </textarea>
-          </Typography>
-          <Stack direction="row" alignItems="center" spacing={2}>
+        <Box className="modal-container" sx={style}>
+          <header className="title">Start a new discussion</header>
+
+          <div style={{ fontSize: "120%" }}>
+            <label style={{ display: "block" }} for="topic">
+              <b>Enter your topic to discuss :</b>
+            </label>
+            <textarea rows="2" required style={{ width: "100%" }} id="topic" />
+          </div>
+
+          <br />
+          <div style={{ fontSize: "120%" }}>
+            <label for="description">
+              <b>Description :</b>
+            </label>
+            <textarea
+              rows="8"
+              required
+              style={{
+                width: "100%",
+              }}
+              id="description"
+            />
+          </div>
+
+          <br />
+          <div>
             <Button variant="contained" component="label">
               <AddAPhotoIcon style={{ marginRight: "10px" }} />
               Add Photo
               <input hidden accept="image/*" multiple type="file" />
             </Button>
-          </Stack>
+          </div>
+
+          <br />
+          <div className="finalButton">
+            <Button variant="contained" color="success">
+              Post
+            </Button>
+            <Button
+              variant="contained"
+              color="error"
+              style={{ marginLeft: "1rem" }}
+              onClick={handleClose}
+            >
+              Cancel
+            </Button>
+          </div>
         </Box>
       </Modal>
     </div>
