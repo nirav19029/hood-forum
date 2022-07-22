@@ -20,7 +20,7 @@ public class ForumApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ForumApplication.class, args);
 
-		log.info("Congrats! Your QEatsApplication server has started");
+		log.info("Welcome to the FORUM");
 	}
 
 }

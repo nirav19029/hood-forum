@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import org.modelmapper.ModelMapper;
 
 import com.example.forum.dto.Post;
@@ -75,5 +77,25 @@ public class PostRepositoryServiceImpl implements PostRepositoryService{
             throw new Exception("Id not present");
         }
     }
-    
+
+    @Override
+    public PostEntity saveAttachment(MultipartFile file) {
+        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+       try {
+            if(fileName.contains("..")) {
+                throw  new Exception("Filename contains invalid path sequence "
+                + fileName);
+            }
+
+            PostEntity postEntity
+                    = new PostEntity();
+                    // fileName,
+                    // file.getContentType(),
+                    // file.getBytes());
+            return PostRepository.save(postEntity);
+
+       } catch (Exception e) {
+            throw new Exception("Could not save File: " + fileName);
+       }
+    }   
 }

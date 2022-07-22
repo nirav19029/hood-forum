@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.forum.dto.Post;
+import com.example.forum.models.PostEntity;
 import com.example.forum.repositoryservices.PostRepositoryService;
 
 @Service
@@ -50,6 +52,11 @@ public class PostServiceImpl implements PostService{
         } catch (Exception e) {
             throw(e);
         }
+    }
+
+    @Override
+    public PostEntity saveAttachment(MultipartFile file) {
+        return postRepositoryService.saveAttachment(file);
     }
     
 }

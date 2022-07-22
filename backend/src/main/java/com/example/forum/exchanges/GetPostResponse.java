@@ -6,7 +6,10 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.forum.dto.Post;
+import com.example.forum.models.PostEntity;
 
 @Data
 @NoArgsConstructor
