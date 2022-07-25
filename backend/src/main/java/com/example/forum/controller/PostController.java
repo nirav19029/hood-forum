@@ -7,6 +7,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+
+import javax.inject.Provider;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.forum.dto.Post;
 import com.example.forum.exchanges.GetPostResponse;
-import com.example.forum.models.PostEntity;
 import com.example.forum.service.PostService;
 
 
@@ -27,8 +29,6 @@ import com.example.forum.service.PostService;
 public class PostController {
 
 	@Autowired
-	private ModelMapper modelMapper;
-
 	private PostService postService;
 
 	public static final String POST_API_ENDPOINT="forum/v1";
@@ -36,57 +36,40 @@ public class PostController {
 	public static final String GET_API_ID="post/{id}";
 	public static final String POST_API="createPost";
 
-	//AutoWire-Service-Layer
 
-	//Getting all post
 	@GetMapping(GET_API)
 	public List<Post> getAllPosts() {
-		/*Calling the get ALLPost method and appling the 
-		modle mapper for each and evey postEntity using arrow function*/
-		return postService.getAllPost().stream().map(postEntity -> modelMapper.map(postEntity, Post.class))
-		.collect(Collectors.toList());
+
+		return postService.getAllPost();
+
 	}
 
 	@GetMapping(GET_API_ID)
-	ResponseEntity<Post> getpostsById(@PathVariable(name = "id") int id) {
+	ResponseEntity<Post> getpostsById(@PathVariable(name = "id") String id) throws Exception {
 
-		//Convert DTO to Entity
-		PostEntity postEntity = postService.getPostById(id);
+		Post postResposne = postService.getPostById(id);
 
-		// convert entity to DTO
-		Post getPostResponse = modelMapper.map(postEntity, Post.class);
-		return ResponseEntity.ok().body(getPostResponse);
+		return ResponseEntity.ok().body(postResposne);
 	}
 
 	@PostMapping(POST_API)
-	public ResponseEntity<Post> postPost(@RequestBody Post post){
+	public ResponseEntity<Post> postPost(@RequestBody Post postRequest){
 
-		//Converting DTO to entity
-		PostEntity postRequest = modelMapper.map(post, PostEntity.class);
+		Post postResponse = postService.createPost(postRequest);
 
-		PostEntity postEntity = postService.createPost(postRequest);
-
-		//Converting entity to DTO
-		Post postResponse = modelMapper.map(postEntity, Post.class);
 		return new ResponseEntity<Post>(postResponse, HttpStatus.CREATED);
 	}
 
 	@PutMapping(GET_API_ID)
-	public ResponseEntity<Post> updatePost(@PathVariable int id, @RequestBody Post post) {
+	public ResponseEntity<Post> updatePost(@PathVariable String id, @RequestBody Post post) throws Exception {
 
-		// convert DTO to Entity
-		PostEntity postRequest = modelMapper.map(post, PostEntity.class);
+		Post postResposne = postService.updatePost(id, post);
 
-		PostEntity postEntity = postService.updatePost(id, postRequest);
-
-		// entity to DTO
-		Post postResponse = modelMapper.map(postEntity, Post.class);
-
-		return ResponseEntity.ok().body(postResponse);
+		return ResponseEntity.ok().body(postResposne);
 	}
 
 	@DeleteMapping(GET_API_ID)
-	public ResponseEntity<GetPostResponse>deletePost(@PathVariable(name = "id") int id){
+	public ResponseEntity<GetPostResponse>deletePost(@PathVariable(name = "id") String id) throws Exception{
 		postService.deletePost(id);
 		GetPostResponse getPostResponse = new GetPostResponse();
 		return new ResponseEntity<GetPostResponse>(getPostResponse, HttpStatus.OK);

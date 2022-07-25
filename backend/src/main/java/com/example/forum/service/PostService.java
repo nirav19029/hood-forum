@@ -5,15 +5,13 @@ import com.example.forum.dto.Post;
 import com.example.forum.models.PostEntity;
 
 public interface PostService {
-    List<PostEntity>getAllPost();
+    List<Post>getAllPost();
     
-    PostEntity createPost(PostEntity postEntity);
+    Post createPost(Post postEntity);
 
-    PostEntity updatePost(int id,PostEntity postEntity);
+    Post updatePost(String id,Post post) throws Exception;
 
-    void deletePost(int id);
+    String deletePost(String id) throws Exception;
 
-    PostEntity getPostById(int id);
-
-    
+    Post getPostById(String id) throws Exception;
 }

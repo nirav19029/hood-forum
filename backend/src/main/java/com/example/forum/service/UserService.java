@@ -9,6 +9,4 @@ public interface UserService {
     User findOne(int id);    //By Id
 
     void save(User user); 
-
-    
 }

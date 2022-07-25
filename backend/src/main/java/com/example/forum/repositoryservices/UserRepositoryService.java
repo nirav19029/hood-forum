@@ -9,6 +9,6 @@ public interface UserRepositoryService {
 
     public List<User> findAll();
 
-    public Void save(User user);
+    public void save(User user);
 
 }
