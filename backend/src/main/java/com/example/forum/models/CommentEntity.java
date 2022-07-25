@@ -5,7 +5,10 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @Entity
+@Document(collection="post")
 public class CommentEntity {
     @Id
     private String commentId;

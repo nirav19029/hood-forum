@@ -9,6 +9,4 @@ import com.example.forum.models.UserEntity;
 public interface UserRepository extends MongoRepository<UserEntity, String>{
 
     
-    
-    
 }

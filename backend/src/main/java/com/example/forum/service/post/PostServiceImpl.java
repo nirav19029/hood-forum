@@ -1,11 +1,12 @@
 package com.example.forum.service.post;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.forum.dto.Post;
 import com.example.forum.repositoryservices.post.PostRepositoryService;
@@ -22,9 +23,11 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public Post createPost(Post post) throws IOException {
-        /*Conveting the Multipartfile to string  */   //Deserialization logic
-        // String fileName = (multipartFile.getOriginalFilename());
-        // post.setUpload(fileName);
+        //Automatically update the creation date
+        Date date = new Date();
+        long time = date.getTime();
+        Timestamp dateTime=new Timestamp(time);
+        post.setCreatedOn(dateTime);
         return postRepositoryService.createPost(post);
     }
 
@@ -34,7 +37,6 @@ public class PostServiceImpl implements PostService{
             Post post = postRepositoryService.findById(id);
             post.setTitle(postRequest.getTitle());
             post.setDescription(postRequest.getDescription());
-            post.setCreatedOn(postRequest.getCreatedOn());
             return post;
         } catch (Exception e) {
             throw (e);

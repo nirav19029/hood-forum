@@ -15,7 +15,7 @@ public class UserController {
     
     public static final String USER_API_ENDPOINT="forum/v1";
 	public static final String GET_API="user";
-	public static final String POST_API="createPost";
+	public static final String POST_API="createUser";
 
 
     // @GetMapping(GET_API)
