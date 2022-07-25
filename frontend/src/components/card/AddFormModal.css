@@ -8,10 +8,17 @@
 
 .finalButton{
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     transform: translate(0%,130%);
 }
 
 textarea{
     font-size: large;
+}
+
+.main-modal{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
 }
