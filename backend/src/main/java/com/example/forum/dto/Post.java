@@ -20,20 +20,6 @@ class Like {
 }
 
 
-class Reply{
-
-    private String userId;
-    private String postId;
-
-    private String description;
-
-
-    private Like[] likes  ;
-
-
-}
-
-
 
 @Data
 @AllArgsConstructor
@@ -50,5 +36,5 @@ public class Post{
     private String createdOn;
     private String description;
 
-    private ArrayList<Reply> replies ;
+    private String upload;
 }
