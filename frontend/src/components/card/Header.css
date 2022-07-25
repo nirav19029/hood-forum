@@ -1,14 +1,13 @@
 .header {
     display: flex;
+    position: sticky;
     padding: 10px 0px;
+    top:0;
     margin: 0px 0px ;
     background-color: rgb(167, 167, 167);
     color: white;
     font-size: 30px;
-    justify-content: center;
-    height: fit-content;
     line-height: 0.0rem;
-    /* justify-content: space-between; */
 }
 #title {
     margin-left: auto;
@@ -19,4 +18,5 @@
     line-height: 00.1rem;
     margin-left: auto;
     max-height: fit-content;
+    margin-right: 2rem;
 }
