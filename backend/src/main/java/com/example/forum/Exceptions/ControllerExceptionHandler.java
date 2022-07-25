@@ -49,4 +49,15 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
   }
+
+  @ExceptionHandler(RuntimeException.class)
+  public ResponseEntity<?> runtimeExceptionHandler(RuntimeException ex, WebRequest request) {
+    List<String> errors = new ArrayList<>();
+
+    errors.add(ex.getMessage()) ;
+    Map<String, List<String>> result = new HashMap<>();
+    result.put("errors" , errors); 
+
+    return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+  }
 }
