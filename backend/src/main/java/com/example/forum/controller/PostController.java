@@ -1,5 +1,6 @@
 package com.example.forum.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.forum.dto.Post;
 import com.example.forum.exchanges.GetPostResponse;
-import com.example.forum.models.PostEntity;
-import com.example.forum.service.PostService;
+import com.example.forum.service.post.PostService;
 
 
 @RestController
@@ -35,7 +32,6 @@ public class PostController {
 	public static final String GET_API="post/all";
 	public static final String GET_API_ID="post/{id}";
 	public static final String POST_API="createPost";
-	public static final String POST_FILE_API="createPost/upload";
 
 
 	@GetMapping(GET_API)
@@ -54,7 +50,7 @@ public class PostController {
 	}
 
 	@PostMapping(POST_API)
-	public ResponseEntity<Post> postPost(@RequestBody Post postRequest){
+	public ResponseEntity<Post> createPost(@RequestBody Post postRequest) throws IOException{
 
 		Post postResponse = postService.createPost(postRequest);
 
@@ -75,24 +71,5 @@ public class PostController {
 		GetPostResponse getPostResponse = new GetPostResponse();
 		return new ResponseEntity<GetPostResponse>(getPostResponse, HttpStatus.OK);
 	}
-
-	//Upload files controller
-	@PostMapping(POST_FILE_API)
-	public ResponseEntity<Post> uploadFile(@RequestParam("file")MultipartFile file) throws Exception {
-		PostEntity postEntity = null;
-        String downloadURl = "";
-        postEntity = postService.saveAttachment(file);
-        downloadURl = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/")
-                .path(PostEntity.getId())
-                .toUriString();
-
-		return ResponseEntity.ok().body(new Post());
-
-		// attachment.getFileName(),
-        //         downloadURl,
-        //         file.getContentType(),
-        //         file.getSize()
-    }
 
 }

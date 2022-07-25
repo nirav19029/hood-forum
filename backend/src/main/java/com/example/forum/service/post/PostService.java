@@ -1,13 +1,16 @@
-package com.example.forum.service;
+package com.example.forum.service.post;
 
+import java.io.IOException;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.forum.dto.Post;
-import com.example.forum.models.PostEntity;
 
 public interface PostService {
     List<Post>getAllPost();
     
-    Post createPost(Post postEntity);
+    Post createPost(Post post) throws IOException;
 
     Post updatePost(String id,Post post) throws Exception;
 
