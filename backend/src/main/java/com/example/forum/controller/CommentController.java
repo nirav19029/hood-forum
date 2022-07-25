@@ -25,7 +25,8 @@ public class CommentController {
     public static final String COMMENT_API_ENDPOINT="comment/v1";
 	public static final String GET_API="comment/{id}";
 	public static final String POST_API="createComment";
-
+ 
+	
     @PostMapping(POST_API)
 	public ResponseEntity<Comment> saveComment(@RequestBody Comment comment) {
         Comment cmt= commentService.createComment(comment);
