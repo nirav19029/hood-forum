@@ -1,15 +1,12 @@
 package com.example.forum.controller;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 
-import javax.inject.Provider;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.forum.dto.Post;
 import com.example.forum.exchanges.GetPostResponse;
-import com.example.forum.service.PostService;
+import com.example.forum.service.post.PostService;
 
 
 @RestController
@@ -53,7 +50,7 @@ public class PostController {
 	}
 
 	@PostMapping(POST_API)
-	public ResponseEntity<Post> postPost(@RequestBody Post postRequest){
+	public ResponseEntity<Post> createPost(@RequestBody Post postRequest) throws IOException{
 
 		Post postResponse = postService.createPost(postRequest);
 
