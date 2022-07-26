@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "62dee4c9637ab84d89196d91"
+  },
+  "title": "new post",
+  "userId": "123",
+  "description": "qwerdftybuncbewobco cwqbciqwbcoqw wqcqnoqw",
+  "like": 0,
+  "_class": "com.example.forum.models.PostEntity"
+},{
+  "_id": {
+    "$oid": "62dee522637ab84d89196d92"
+  },
+  "title": "new post 1",
+  "userId": "1234",
+  "description": "This is description",
+  "like": 0,
+  "_class": "com.example.forum.models.PostEntity"
+}]
