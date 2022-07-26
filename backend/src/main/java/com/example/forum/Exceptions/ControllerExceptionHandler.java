@@ -38,6 +38,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
   }
+
   @ExceptionHandler(ConstraintViolationException.class)
   public ResponseEntity<?> constraintViolationException(ConstraintViolationException ex, WebRequest request) {
     List<String> errors = new ArrayList<>();
@@ -50,7 +51,7 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
   }
 
-  @ExceptionHandler(RuntimeException.class)
+  @ExceptionHandler(Exception.class)
   public ResponseEntity<?> runtimeExceptionHandler(RuntimeException ex, WebRequest request) {
     List<String> errors = new ArrayList<>();
 
