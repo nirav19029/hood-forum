@@ -65,7 +65,7 @@ public class PostController {
 	}
 
 	@PostMapping(POST_API)
-	public ResponseEntity<Post> createPost( @Valid @RequestBody  PostRequestBody postRequestBody, @RequestAttribute(name = "user_details") GoogleAuthUserDetails googleAuthUserDetails){
+	public ResponseEntity<Post> createPost( @Valid @RequestBody  PostRequestBody postRequestBody,   @RequestAttribute(name = "user_details", required = false) GoogleAuthUserDetails googleAuthUserDetails){
 		
 		// here we have access to user_details set by authorizing service 
 		// + 

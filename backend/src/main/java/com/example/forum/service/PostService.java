@@ -2,7 +2,6 @@ package com.example.forum.service;
 
 import java.util.List;
 import com.example.forum.dto.Post;
-import com.example.forum.models.PostEntity;
 
 public interface PostService {
     List<Post>getAllPost();
