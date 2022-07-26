@@ -1,4 +1,4 @@
-.container{
+.container {
     display: flex;
     justify-content: space-between;
 }
@@ -9,14 +9,14 @@
     margin-left: 3rem;
 }
 
-.img{
+.img {
     width: 4rem;
     height: 4rem;
     align-items: center;
 }
 
 
-.follow{
+.follow {
     display: flex;
     align-items: center;
     margin-right: 3rem;
@@ -24,7 +24,7 @@
 
 }
 
-.info{
+.info {
     margin-left: 10px;
 }
 
@@ -34,8 +34,27 @@ h3 {
     padding: 0;
 }
 
-p{
+p {
     margin: 0;
     margin-top: 2px;
     padding: 0;
+}
+
+.container-1 {
+    display: flex;
+
+}
+
+.like,
+.comment,
+.share {
+    width: 33.33%;
+    color: black;
+}
+
+#likeIcon,
+#commentIcon,
+#shareIcon {
+    margin-right: 1rem;
+    color: black;
 }
