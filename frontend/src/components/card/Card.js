@@ -4,7 +4,7 @@ import Utilities from "./Utilities";
 
 const Card = () => {
   return (
-    <div className="card-container">
+    <div className="card-container" style={{ marginBottom: "3rem" }}>
       <div>
         {/* Userinfo */}
         <UserInfo />
