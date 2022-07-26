@@ -11,6 +11,6 @@ import com.example.forum.dto.Post;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class getPostResponse {
+public class GetPostResponse {
     List<Post>post;
 }
