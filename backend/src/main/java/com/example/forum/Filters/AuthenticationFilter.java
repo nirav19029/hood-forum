@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -19,6 +20,7 @@ import com.example.forum.utils.TokenProcessor;
 
 
 @Component
+@Order(1)
  public class AuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     TokenProcessor  tokenProcessor;
@@ -40,6 +42,7 @@ import com.example.forum.utils.TokenProcessor;
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
 
            String token = tokenProcessor.extractToken(requestTokenHeader) ;
+           System.out.println(token);
            
             try{
                    GoogleAuthUserDetails userDetails =  authService.verifyGooogleAccessToken(token) ;
