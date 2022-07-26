@@ -1,13 +1,14 @@
-package com.example.forum.service;
+package com.example.forum.service.post;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.forum.dto.Post;
-import com.example.forum.repositoryservices.PostRepositoryService;
-
+import com.example.forum.repositoryservices.post.PostRepositoryService;
 @Service
 public class PostServiceImpl implements PostService{
 
@@ -20,7 +21,10 @@ public class PostServiceImpl implements PostService{
     }
 
     @Override
-    public Post createPost(Post post) {
+    public Post createPost(Post post) throws IOException {
+        /*Conveting the Multipartfile to string  */   //Deserialization logic
+        // String fileName = (multipartFile.getOriginalFilename());
+        // post.setUpload(fileName);
         return postRepositoryService.createPost(post);
     }
 

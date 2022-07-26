@@ -1,4 +1,4 @@
-package com.example.forum.repositoryservices;
+package com.example.forum.repositoryservices.post;
 
 import java.util.ArrayList;
 import java.util.List;

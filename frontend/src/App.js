@@ -1,8 +1,7 @@
 import React from "react";
-import AddPostButton from "./components/card/AddPostButton";
-import Card from "./components/card/Card";
-import AddFormModal from "./components/card/AddFormModal";
-import Header from "./components/card/Header";
+import Card from "./components/Card/Card";
+import AddFormModal from "./components/Modal/AddFormModal";
+import Header from "./components/Header/Header";
 import "./App.css";
 
 const App = () => {
@@ -15,10 +14,19 @@ const App = () => {
 
       <br />
       <br />
-      <AddPostButton />
+      <Card />
+      <Card />
+
       <br />
       <br />
-      <AddFormModal />
+      <Card />
+      <Card />
+
+      <br />
+      <br />
+      <div className="modal-wrapper">
+        <AddFormModal />
+      </div>
     </div>
   );
 };

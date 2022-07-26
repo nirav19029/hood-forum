@@ -1,7 +1,7 @@
 package com.example.forum.controller;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import com.example.forum.dto.GoogleAuthUserDetails;
 import com.example.forum.dto.Post;
 import com.example.forum.exchanges.GetPostResponse;
 import com.example.forum.exchanges.PostRequestBody;
-import com.example.forum.service.PostService;
+import com.example.forum.service.post.PostService;;
 
 
 @RestController
@@ -86,7 +86,14 @@ public class PostController {
 
 		Post post = modelMapper.map(postRequestBody, Post.class) ;
 
-		Post postResponse = postService.createPost(post);
+		Post postResponse;
+		try {
+			postResponse = postService.createPost(post);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			// e.printStackTrace();
+			throw new RuntimeException(e.getMessage());
+		}
 
 		return new ResponseEntity<Post>(postResponse, HttpStatus.CREATED);
 	}

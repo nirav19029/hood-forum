@@ -1,12 +1,12 @@
-package com.example.forum.service;
+package com.example.forum.service.user;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.forum.dto.User;
-import com.example.forum.repositoryservices.UserRepositoryService;
+import com.example.forum.repositoryservices.user.UserRepositoryService;
 
 @Service
 public class UserServiceImp implements UserService{
@@ -15,13 +15,13 @@ public class UserServiceImp implements UserService{
     private UserRepositoryService userRepositoryService;
 
     @Override
-    public List<User>findAll(){
+    public ArrayList<User>findAll(){
         return userRepositoryService.findAll();
     }
 
     @Override
-    public User findOne(int id) {
-        return userRepositoryService.findOne(id);
+    public User findByUserId(String id) throws Exception {
+        return userRepositoryService.findByUserId(id);
     }
 
     @Override
