@@ -7,7 +7,7 @@ import com.example.forum.models.PostEntity;
 public interface PostService {
     List<Post>getAllPost();
     
-    Post createPost(Post postEntity);
+    Post createPost(Post post);
 
     Post updatePost(String id,Post post) throws Exception;
 
