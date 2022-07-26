@@ -5,12 +5,17 @@ import Header from "./components/Header/Header";
 import "./App.css";
 
 const App = () => {
+  let data = require("./data/post.json");
+  // console.log(data[0]);
+
   return (
     <div>
       <Header />
 
-      <Card />
-      <Card />
+      {data.map((e) => {
+        return <Card value={e} key={e._id} />;
+      })}
+      {/* <Card />
 
       <br />
       <br />
@@ -22,7 +27,7 @@ const App = () => {
       <Card />
       <Card />
 
-      <br />
+      <br /> */}
       <br />
       <div className="modal-wrapper">
         <AddFormModal />
