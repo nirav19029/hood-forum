@@ -10,7 +10,7 @@ import "./Card.css";
 
 const Card = () => {
   useEffect(() => {
-    let data = require("./../.././data/post.json");
+    let data = require("../../data/post.json");
     console.log(data);
   }, []);
 
