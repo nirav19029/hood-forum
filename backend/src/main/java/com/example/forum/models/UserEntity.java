@@ -24,7 +24,7 @@ import javax.persistence.GenerationType;
 public class UserEntity {
     @Id                                                      //Primary Key
     @GeneratedValue(strategy = GenerationType.IDENTITY)      //To automaticall generate the primary key value     //GenerationType.IDENTITY is used to auto-increment the id 
-    private int userId;
+    private String userId;
 
     @Column(nullable=false, unique=true)
     private String email;
@@ -41,9 +41,4 @@ public class UserEntity {
 
     private Date createdAt;
 
-    // private Date lastLoginTime;
-
-    // @OneToOne
-    // @PrimaryKeyJoinColumn
-    // private UserAdditionalInfo info;
 }

@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 import "./AddFormModal.css";
 
 const style = {
@@ -24,8 +25,14 @@ export default function BasicModal() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+    <div className="main-modal">
+      <Button
+        onClick={handleOpen}
+        variant="contained"
+        style={{ height: "4rem", width: "4rem", borderRadius: "50%" }}
+      >
+        <PostAddIcon />
+      </Button>
       <Modal
         open={open}
         aria-labelledby="modal-modal-title"
