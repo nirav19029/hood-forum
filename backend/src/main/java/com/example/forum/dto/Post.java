@@ -9,17 +9,15 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 
-class Like {
-    private String useId;
-}
+
+
+
 
 
 
@@ -27,16 +25,16 @@ class Like {
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post{
-
-    @NotNull
     private String title;
+    @Id
+    @JsonIgnore
 
     
+    @JsonProperty("_id")
     private String postId;
-
     private String userId;
     private String createdOn;
     private String description;
 
-    private String upload;
+    private ArrayList<Comment> replies ;
 }

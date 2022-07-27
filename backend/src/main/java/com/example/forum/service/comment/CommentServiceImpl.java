@@ -18,17 +18,52 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Comment createComment(Comment comment) {
-        Date date = new Date();
-        long time = date.getTime();
-        Timestamp dateTime=new Timestamp(time);
-
-        comment.setTimestamp(dateTime);
-        return commentRepositoryService.save(comment);
+        return commentRepositoryService.createComment(comment);
     }
 
     @Override
     public ArrayList<Comment> getAllComments(String postId) {
         return commentRepositoryService.getAllComments(postId);
     }
+    
+    @Override
+    public Comment getCommentByCommentId(String id) throws Exception{
+       try {
+        Comment comment  = commentRepositoryService.getCommentByCommentId(id);
+        return comment;
+       } catch (Exception e) {
+        throw(e);
+       }
+    }
+    
+    @Override
+    public String deleteCommentByCommentId(String id) throws Exception{
+        try {
+            return commentRepositoryService.deleteByCommentId(id);
+        } catch (Exception e) {
+            throw(e);
+        }
+    }
+    @Override
+    public String deleteCommentByPostId(String id) throws Exception{
+        try {
+            return commentRepositoryService.deleteByPostId(id);
+        } catch (Exception e) {
+            throw(e);
+        }
+    }
+
+    @Override
+    public Comment updateComment(String id, Comment commentRequest) throws Exception{
+        try {
+            Comment comment = commentRepositoryService.getCommentByCommentId(id);
+            comment.setDescription(commentRequest.getDescription());
+            comment.setCreatedOn(commentRequest.getCreatedOn());
+            return comment;
+        } catch (Exception e) {
+            throw (e);
+        }   
+    }
+
     
 }
