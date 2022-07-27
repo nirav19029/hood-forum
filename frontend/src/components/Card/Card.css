@@ -1,6 +1,15 @@
+.card-container{
+    width: 100%;
+    margin-top: 0.8rem;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    box-shadow: 0.3rem 0.3rem 0.4rem grey;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
+    margin-top: 0.8rem;
 }
 
 .data {
@@ -40,9 +49,28 @@ p {
     padding: 0;
 }
 
+/* content css */
+
+.card-title{
+    margin-left: 0.8rem;
+}
+
+/* updation css */
+.updation{
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.7;
+    margin: 0 1rem;
+}
+
+
+
+
+/* like,update and share */
+
 .container-1 {
     display: flex;
-
+    border-top: 1px solid black;
 }
 
 .like,
@@ -50,6 +78,7 @@ p {
 .share {
     width: 33.33%;
     color: black;
+    justify-content: center;
 }
 
 #likeIcon,
@@ -58,3 +87,4 @@ p {
     margin-right: 1rem;
     color: black;
 }
+

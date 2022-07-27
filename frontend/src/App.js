@@ -5,25 +5,18 @@ import Header from "./components/Header/Header";
 import "./App.css";
 
 const App = () => {
+  let data = require("./data/post.json");
+  // console.log(data[0]);
+
   return (
-    <div>
+    <div className="App">
       <Header />
+      <div className="main-data">
+        {data.map((e) => {
+          return <Card value={e} key={e._id} />;
+        })}
+      </div>
 
-      <Card />
-      <Card />
-
-      <br />
-      <br />
-      <Card />
-      <Card />
-
-      <br />
-      <br />
-      <Card />
-      <Card />
-
-      <br />
-      <br />
       <div className="modal-wrapper">
         <AddFormModal />
       </div>

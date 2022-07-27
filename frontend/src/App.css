@@ -1,6 +1,10 @@
-/* .main-header{
-    position: fixed;
-} */
+.main-data{
+    position: absolute;
+    left: 0;
+    right :0;
+    margin: auto;
+    max-width: 65%;
+}
 
 .modal-wrapper{
     position: fixed;

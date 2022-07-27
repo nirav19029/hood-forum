@@ -79,7 +79,7 @@ public class PostController {
 		System.out.println("user_details at post controller" + userDetails);
 
 
-		Post post = modelMapper.map(postRequestBody, Post.class) ;
+		Post post = modelMapper.map(postRequestBody, Post.class) ; //correct-it 
 
 		Post postResponse;
 		try {

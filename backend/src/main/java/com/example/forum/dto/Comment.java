@@ -1,6 +1,6 @@
 package com.example.forum.dto;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Id;
 
@@ -18,14 +18,14 @@ public class Comment {
 
     private String comment;
 
-    private Timestamp timestamp;
+    private Date timestamp;
 
     //NoArgs
     public Comment(){
         super();
     }
     //AllArgs
-    public Comment(String commentId, String postId, String userId, String comment,Timestamp timestamp){
+    public Comment(String commentId, String postId, String userId, String comment,Date timestamp){
         super();
         this.commentId = commentId;
         this.postId = postId;
@@ -66,11 +66,11 @@ public class Comment {
 		this.comment = comment;
 	}
 
-    public Timestamp getTimestamp() {
+    public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 }

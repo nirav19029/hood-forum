@@ -1,29 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Avatar from "@mui/material/Avatar";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Button from "@mui/material/Button";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import ShareIcon from "@mui/icons-material/Share";
-import axios from "axios";
 import "./Card.css";
 
-const Card = () => {
-  useEffect(() => {
-    let data = require("../../data/post.json");
-    console.log(data);
-  }, []);
-
+const Card = (e) => {
+  console.log(e.value);
   return (
-    <div className="card-container" style={{ marginBottom: "3rem" }}>
+    <div className="card-container" id={e.value._id}>
       {/* Userinfo */}
-
       <div className="container">
         <div className="data">
           <Avatar src="/broken-image.jpg" className="img" />
           <div className="info">
-            <h3>UserName</h3>
-            <p>date</p>
+            <h3>{e.value.userName}</h3>
+            <p>{e.value.date}</p>
           </div>
         </div>
         <div className="follow">
@@ -36,16 +30,14 @@ const Card = () => {
       <br />
 
       {/* Content */}
-      <div className="content">This is nobroker forum description</div>
-
+      <div className="card-title">{e.value.description}</div>
+      <br />
       {/* No.of likes/response */}
       <div className="updation">
-        <div className="like-update">0 likes</div>
+        <div className="like-update">{e.value.like} likes</div>
         <div className="comment-update">0 comments</div>
       </div>
 
-      <br />
-      <br />
       {/* Like,comment and share */}
 
       <div className="container-1">

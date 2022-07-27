@@ -1,6 +1,7 @@
 package com.example.forum.models;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,14 +16,14 @@ public class CommentEntity {
 
     private String comment;
 
-    private Timestamp timestamp;
+    private Date timestamp;
 
     //NoArgs
     public CommentEntity(){
         super();
     }
     //AllArgs
-    public CommentEntity(String commentId, String postId, String userId, String comment,Timestamp timestamp){
+    public CommentEntity(String commentId, String postId, String userId, String comment,Date timestamp){
         super();
         this.commentId = commentId;
         this.postId = postId;
@@ -63,11 +64,11 @@ public class CommentEntity {
 		this.comment = comment;
 	}
 
-    public Timestamp getTimestamp() {
+    public Date getTimestamp() {
 		return timestamp;
 	}
 
-	public void setTimestamp(Timestamp timestamp) {
+	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
 }
