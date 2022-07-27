@@ -15,23 +15,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 
-class Like {
-    private String useId;
-}
 
 
-class Reply{
 
-    private String userId;
-    private String postId;
-
-    private String description;
-
-
-    private Like[] likes  ;
-
-
-}
 
 
 
@@ -50,5 +36,5 @@ public class Post{
     private String createdOn;
     private String description;
 
-    private ArrayList<Reply> replies ;
+    private ArrayList<Comment> replies ;
 }

@@ -1,17 +1,32 @@
 import React from "react";
-import "./App.css";
-import AddPostButton from "./components/card/AddPostButton";
 import Card from "./components/card/Card";
+import AddFormModal from "./components/card/AddFormModal";
+import Header from "./components/card/Header";
+import "./App.css";
 
 const App = () => {
   return (
     <div>
+      <Header />
+
       <Card />
       <Card />
 
       <br />
       <br />
-      <AddPostButton />
+      <Card />
+      <Card />
+
+      <br />
+      <br />
+      <Card />
+      <Card />
+
+      <br />
+      <br />
+      <div className="modal-wrapper">
+        <AddFormModal />
+      </div>
     </div>
   );
 };
