@@ -84,7 +84,7 @@ public class PostController {
 		}
 
 
-		Post post = modelMapper.map(postRequestBody, Post.class) ;
+		Post post = modelMapper.map(postRequestBody, Post.class) ; //correct-it 
 
 		Post postResponse;
 		try {

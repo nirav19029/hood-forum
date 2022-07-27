@@ -1,6 +1,7 @@
 package com.example.forum.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,7 +35,7 @@ public class PostEntity{
     private String postId;
 
     private String userId;
-    private String createdOn;
+    private Date createdOn;
     private String description;
 
     private String upload;

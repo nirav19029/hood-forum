@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
@@ -35,7 +36,7 @@ public class Post{
     private String postId;
 
     private String userId;
-    private String createdOn;
+    private Date createdOn;
     private String description;
 
     private String upload;
