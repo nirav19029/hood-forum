@@ -30,7 +30,7 @@ const Card = (e) => {
       <br />
 
       {/* Content */}
-      <div className="content">{e.value.description}</div>
+      <div className="card-title">{e.value.description}</div>
 
       {/* No.of likes/response */}
       <div className="updation">
