@@ -9,26 +9,14 @@ const App = () => {
   // console.log(data[0]);
 
   return (
-    <div>
+    <div className="App">
       <Header />
+      <div className="main-data">
+        {data.map((e) => {
+          return <Card value={e} key={e._id} />;
+        })}
+      </div>
 
-      {data.map((e) => {
-        return <Card value={e} key={e._id} />;
-      })}
-      {/* <Card />
-
-      <br />
-      <br />
-      <Card />
-      <Card />
-
-      <br />
-      <br />
-      <Card />
-      <Card />
-
-      <br /> */}
-      <br />
       <div className="modal-wrapper">
         <AddFormModal />
       </div>
