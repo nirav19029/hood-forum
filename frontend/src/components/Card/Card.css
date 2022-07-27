@@ -1,10 +1,14 @@
 .card-container{
-    margin-top: 2rem;
+    margin-top: 0.8rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px grey;
 }
 
 .container {
     display: flex;
     justify-content: space-between;
+    margin-top: 0.8rem;
 }
 
 .data {
@@ -44,9 +48,18 @@ p {
     padding: 0;
 }
 
+/* content css */
+
+.card-title, .updation{
+    margin-left: 0.8rem;
+}
+
+/* updation css */
+
+
 .container-1 {
     display: flex;
-
+    border-top: 1px solid black;
 }
 
 .like,
@@ -54,6 +67,7 @@ p {
 .share {
     width: 33.33%;
     color: black;
+    justify-content: center;
 }
 
 #likeIcon,
