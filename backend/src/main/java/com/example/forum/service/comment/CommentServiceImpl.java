@@ -18,12 +18,17 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Comment createComment(Comment comment) {
+        Date date = new Date();
+        long time = date.getTime();
+        Timestamp dateTime=new Timestamp(time);
+
+        comment.setTimestamp(dateTime);
         return commentRepositoryService.createComment(comment);
     }
 
     @Override
-    public ArrayList<Comment> getAllComments(String postId) {
-        return commentRepositoryService.getAllComments(postId);
+    public ArrayList<Comment> getCommentsByPostId(String postId) {
+        return commentRepositoryService.getCommentsByPostId(postId);
     }
     
     @Override
@@ -57,8 +62,8 @@ public class CommentServiceImpl implements CommentService{
     public Comment updateComment(String id, Comment commentRequest) throws Exception{
         try {
             Comment comment = commentRepositoryService.getCommentByCommentId(id);
-            comment.setDescription(commentRequest.getDescription());
-            comment.setCreatedOn(commentRequest.getCreatedOn());
+            comment.setComment(commentRequest.getComment());
+            comment.setTimestamp(commentRequest.getTimestamp());
             return comment;
         } catch (Exception e) {
             throw (e);

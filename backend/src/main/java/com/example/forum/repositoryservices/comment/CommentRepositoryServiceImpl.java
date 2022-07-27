@@ -40,12 +40,11 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
     }
 
     @Override
-    public ArrayList<Comment> getAllComments(String postId) {
+    public ArrayList<Comment> getCommentsByPostId(String postId) {
         ArrayList<Comment> comments=new ArrayList<>();
         Query query = new Query();            //For the query parameter
         query.addCriteria(Criteria.where("postId").is(postId));  //key- postId, value- Input vaue in postId parameter
-        // List<CommentEntity> commentEntity = mongoTemplate.find(query, CommentEntity.class);
-        List<CommentEntity> commentEntity = commentRepository.findAll();
+        List<CommentEntity> commentEntity = mongoTemplate.find(query, CommentEntity.class);
 
         System.out.println("list of comments are"+"/n"+commentEntity);
         for(CommentEntity temp:commentEntity){
@@ -71,9 +70,9 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
         Optional<CommentEntity> commentEntity = commentRepository.findById(id);
         if(commentEntity.isPresent()){
             commentRepository.deleteById(id);
-            return "Post Deleted";
+            return "Comment Deleted";
         }else{
-            throw new Exception("Id not present");
+            throw new Exception("CommentId not present");
         }
     }
     
