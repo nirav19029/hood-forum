@@ -1,73 +1,26 @@
 package com.example.forum.models;
 
-import java.sql.Timestamp;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
+class Like {
+    private String userId;
+}
+
+@Data
+@Document(collection="comment")
+@NoArgsConstructor
 public class CommentEntity {
-    @Id
+
+    @Field("_id")
     private String commentId;
 
-    private String postId;
     private String userId;
-
-    private String comment;
-
-    private Timestamp timestamp;
-
-    //NoArgs
-    public CommentEntity(){
-        super();
-    }
-    //AllArgs
-    public CommentEntity(String commentId, String postId, String userId, String comment,Timestamp timestamp){
-        super();
-        this.commentId = commentId;
-        this.postId = postId;
-        this.userId = userId;
-        this.comment = comment;
-        this.timestamp = timestamp;
-    }
-
-    public String getCommentId(){
-        return commentId;
-    }
-
-    public void setCommentId(String commentId){
-        this.commentId = commentId;
-    }
-
-    public String getPostId() {
-		return postId;
-	}
-
-	public void setPostId(String postId) {
-		this.postId = postId;
-	}
-
-    public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-    public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-    public Timestamp getTimestamp() {
-		return timestamp;
-	}
-
-	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
-	}
+    private String postId;
+    private String createdOn;
+    private String description;
+    private Like[] likes ;
 }

@@ -11,15 +11,15 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.example.forum.dto.Comment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-class Like {
-    private String useId;
-}
+
+
 
 
 @Data
@@ -37,5 +37,5 @@ public class PostEntity{
     private String createdOn;
     private String description;
 
-    private String upload;
+    private ArrayList<Comment> replies ;
 }
