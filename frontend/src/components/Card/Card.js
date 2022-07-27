@@ -31,15 +31,13 @@ const Card = (e) => {
 
       {/* Content */}
       <div className="card-title">{e.value.description}</div>
-
+      <br />
       {/* No.of likes/response */}
       <div className="updation">
         <div className="like-update">{e.value.like} likes</div>
         <div className="comment-update">0 comments</div>
       </div>
 
-      <br />
-      <br />
       {/* Like,comment and share */}
 
       <div className="container-1">
