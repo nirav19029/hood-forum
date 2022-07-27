@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.forum.dto.GoogleAuthUserDetails;
+import com.example.forum.dto.UserDetails;
 import com.example.forum.dto.Post;
 import com.example.forum.exchanges.GetPostResponse;
 import com.example.forum.exchanges.PostRequestBody;
@@ -65,7 +65,7 @@ public class PostController {
 	}
 
 	@PostMapping(POST_API)
-	public ResponseEntity<Post> createPost( @Valid @RequestBody  PostRequestBody postRequestBody,   @RequestAttribute(name = "user_details", required = false) GoogleAuthUserDetails googleAuthUserDetails){
+	public ResponseEntity<Post> createPost( @Valid @RequestBody  PostRequestBody postRequestBody,   @RequestAttribute(name = "user_details", required = false) UserDetails userDetails){
 		
 		// here we have access to user_details set by authorizing service 
 		// + 
@@ -76,12 +76,7 @@ public class PostController {
 
 
 		// this is dummy data sent through authService
-		System.out.println("user_details" + googleAuthUserDetails);
-
-		if( googleAuthUserDetails != null){
-
-			System.out.println(googleAuthUserDetails);
-		}
+		System.out.println("user_details at post controller" + userDetails);
 
 
 		Post post = modelMapper.map(postRequestBody, Post.class) ;
