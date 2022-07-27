@@ -1,4 +1,4 @@
-package com.example.forum.Exceptions;
+package com.example.forum.Exceptions.Handlers;
 
 
 import java.util.ArrayList;
@@ -19,14 +19,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.example.forum.exchanges.DefaultResponseFormat;
+
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
+
   @Override
   protected ResponseEntity<Object> handleMethodArgumentNotValid(
       MethodArgumentNotValidException ex, HttpHeaders headers,
       HttpStatus status, WebRequest request) {
 
-    Map<String, List<String>> body = new HashMap<>();
 
     List<String> errors = ex.getBindingResult()
         .getFieldErrors()
@@ -34,9 +36,9 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
         .map(DefaultMessageSourceResolvable::getDefaultMessage)
         .collect(Collectors.toList());
 
-    body.put("errors", errors);
+    DefaultResponseFormat nbException = new DefaultResponseFormat(400, "Error while processing your order", errors);
 
-    return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+    return new ResponseEntity<>(nbException, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(ConstraintViolationException.class)
@@ -45,20 +47,30 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
     ex.getConstraintViolations().forEach(cv -> errors.add(cv.getMessage()));
 
-    Map<String, List<String>> result = new HashMap<>();
-    result.put("errors", errors);
 
-    return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    DefaultResponseFormat nbException = new DefaultResponseFormat(400, "Error while processing your order", errors);
+
+    return new ResponseEntity<>(nbException, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(Exception.class)
+  public ResponseEntity<DefaultResponseFormat> genericHandler(Exception ex, WebRequest request) {
+    List<String> errors = new ArrayList<>();
+
+    errors.add(ex.getMessage()) ;
+    DefaultResponseFormat nbException = new DefaultResponseFormat(400, "Error while processing your order", errors);
+    return new ResponseEntity<DefaultResponseFormat>(nbException, HttpStatus.BAD_REQUEST);
+  }
+
+  @ExceptionHandler(RuntimeException.class)
   public ResponseEntity<?> runtimeExceptionHandler(RuntimeException ex, WebRequest request) {
     List<String> errors = new ArrayList<>();
 
     errors.add(ex.getMessage()) ;
-    Map<String, List<String>> result = new HashMap<>();
-    result.put("errors" , errors); 
-
-    return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+    Map<String,Object> response = new HashMap<>() ;
+    response.put("errors", errors) ;
+    
+    DefaultResponseFormat nbException = new DefaultResponseFormat(400, "Error while processing your order", errors);
+    return new ResponseEntity<>(nbException, HttpStatus.BAD_REQUEST);
   }
 }

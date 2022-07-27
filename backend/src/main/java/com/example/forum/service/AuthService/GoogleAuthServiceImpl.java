@@ -7,7 +7,7 @@ import java.util.Collections;
 import org.apache.tomcat.util.digester.SystemPropertySource;
 import org.springframework.stereotype.Service;
 
-import com.example.forum.dto.GoogleAuthUserDetails;
+import com.example.forum.dto.UserDetails;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
@@ -15,10 +15,10 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory ;
 
 @Service
-public class AuthServiceImpl  implements AuthService{
+public class GoogleAuthServiceImpl  implements GoogleAuthService{
     private static final String CLIENT_ID = "65516858471-jt2m59irk8sjtnfgodt98o70iqrbtqjo.apps.googleusercontent.com" ;
     @Override
-   public  GoogleAuthUserDetails  verifyGooogleAccessToken(String token) throws RuntimeException, GeneralSecurityException, IOException{
+   public  UserDetails  verifyGooogleAccessToken(String token) throws RuntimeException, GeneralSecurityException, IOException{
 
 
  
@@ -41,7 +41,7 @@ public class AuthServiceImpl  implements AuthService{
                
 
 
-                return new GoogleAuthUserDetails(name, email, pictureUrl) ;
+                return new UserDetails(name, email, pictureUrl) ;
 
     
     
@@ -53,19 +53,9 @@ public class AuthServiceImpl  implements AuthService{
 
                 }
         }catch(Exception ex){
-            throw new RuntimeException("The token is invalid" +  ex.getMessage()) ;
+            throw new RuntimeException("The token is invalid " +  ex.getMessage()) ;
         }
        
-    
-               
-
-    
-    
-    
-                
-    
-   
-   
     
 
    }
