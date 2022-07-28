@@ -24,11 +24,11 @@ public class PostServiceImpl implements PostService{
 
     @Override
     public Post createPost(Post post) throws IOException {
-        Date date = new Date();
-        long time = date.getTime();
-        Timestamp dateTime=new Timestamp(time);
+        // Date date = new Date();
+        // long time = date.getTime();
+        // Timestamp dateTime =new Timestamp(time);
 
-        post.setCreatedOn(dateTime);
+        // post.setCreatedOn(dateTime);
         return postRepositoryService.createPost(post);
     }
 

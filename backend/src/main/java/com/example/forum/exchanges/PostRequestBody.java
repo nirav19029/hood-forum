@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
+
 public class PostRequestBody{
     
     @NotEmpty(message = "title must not be empty")
@@ -20,5 +21,8 @@ public class PostRequestBody{
     @NotEmpty(message = "description must not be empty")
     @NotNull(message = "description must not be null")
     private String description;
+
+
+    
 
 }
