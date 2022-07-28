@@ -6,8 +6,16 @@ import com.example.forum.dto.Comment;
 
 public interface CommentRepositoryService {
 
-    Comment save(Comment comment);
+    Comment createComment(Comment comment);
 
-    ArrayList<Comment> getAllComments(String postId);
+    ArrayList<Comment> getCommentsByPostId(String postId);
+
+    Comment getCommentByCommentId(String id) throws Exception;
+
+    String deleteByCommentId(String id) throws Exception;
+
+    String deleteByPostId(String id) throws Exception;
+
+    Comment updateComment(String id, Comment commentRequest) throws IllegalArgumentException;
         
 }

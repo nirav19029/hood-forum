@@ -14,5 +14,7 @@ public interface PostRepositoryService {
     public Post findById(String id) throws Exception;
 
     public String delete(String id) throws Exception;
+
+    Post updatePost(String id, Post postRequest) throws IllegalArgumentException;
     
 }
