@@ -16,28 +16,23 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-
 class Like {
     private String useId;
 }
 
-
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post{
+public class Post {
 
     @NotNull
     private String title;
 
-    
     private String postId;
 
     private String userId;
     private Date createdOn;
     private String description;
 
-    private String upload;
+    private String imageUrl;
 }
