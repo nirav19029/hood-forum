@@ -8,13 +8,13 @@ import ShareIcon from "@mui/icons-material/Share";
 import "./Card.css";
 
 const Card = (e) => {
-  console.log(e.value);
+  console.log(e);
   return (
     <div className="card-container" id={e.value._id}>
       {/* Userinfo */}
       <div className="container">
         <div className="data">
-          <Avatar src="/broken-image.jpg" className="img" />
+          <Avatar src="/broken-image.jpg" className="avatar-img" />
           <div className="info">
             <h3>{e.value.userName}</h3>
             <p>{e.value.date}</p>
@@ -26,7 +26,6 @@ const Card = (e) => {
         </div>
       </div>
 
-      <br />
       <br />
 
       {/* Content */}
