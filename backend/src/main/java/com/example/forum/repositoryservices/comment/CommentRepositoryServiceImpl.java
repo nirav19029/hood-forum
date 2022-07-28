@@ -123,7 +123,7 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
 
             // //run it!
             // mongoTemplate.upsert(query, update, "comment");
-            return null;
+            return modelMapper.map(commentEntity.get(), Comment.class);
         }
         throw new IllegalArgumentException("commentId not present");
     }
