@@ -20,18 +20,21 @@ public class Comment {
 
     private Date timestamp;
 
+    private Date updatedOn;
+
     //NoArgs
     public Comment(){
         super();
     }
-    //AllArgs
-    public Comment(String commentId, String postId, String userId, String comment,Date timestamp){
+    //AllArg
+    public Comment(String commentId, String postId, String userId, String comment,Date timestamp,Date updatedOn){
         super();
         this.commentId = commentId;
         this.postId = postId;
         this.userId = userId;
         this.comment = comment;
         this.timestamp = timestamp;
+        this.updatedOn = updatedOn; 
     }
 
     public String getCommentId(){
@@ -73,4 +76,11 @@ public class Comment {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+
+    public Date getUpdatedOn(){
+        return updatedOn;
+    }
+    public void setUpdatedOn(Date updatedOn){
+        this.updatedOn = updatedOn;
+    }
 }

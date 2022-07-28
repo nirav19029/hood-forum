@@ -66,20 +66,9 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public Comment updateComment(String id, Comment commentRequest) throws Exception{
+    public Comment updateComment(String id, Comment commentRequest) throws IllegalArgumentException{
         try {
-
-            Query query = new Query();
-            query.addCriteria(Criteria.where("_id").is(id));
-            Comment comment = mongoTemplate.findOne(query, Comment.class);
-
-            Update updatequery = new Update();
-
-            updatequery.set("comment",commentRequest.getComment());
-
-            mongoTemplate.upsert(query,updatequery,Comment.class);
-            
-            return comment;
+            return commentRepositoryService.updateComment(id,commentRequest);
         } catch (Exception e) {
             throw (e);
         }   
