@@ -28,14 +28,18 @@ public class CommentController {
 
 	//Get  a Comment by Comment-Id
     @GetMapping(GET_API_COMMENTID)
-	ResponseEntity<Comment> getCommentsByCommentId(@PathVariable(name = "id") String id) throws Exception {     //id==CommentId
+	ResponseEntity<Comment> getCommentsByCommentId(@PathVariable(name = "id") String id) throws Exception { 
+		    //id==CommentId
+		// ResponseEntity.ok().body(new Comment());
+
 		Comment commentResposne = commentService.getCommentByCommentId(id);
 		return ResponseEntity.ok().body(commentResposne);
 	}
 
 	//Get all comments by postId
     @GetMapping(GET_API_POSTID)
-	ResponseEntity<ArrayList<Comment>> getCommentsByPostId(@PathVariable(name = "id") String id){		//Id==PostId
+	ResponseEntity<ArrayList<Comment>> getCommentsByPostId(@PathVariable(name = "id") String id){	
+		
 		ArrayList<Comment> commentResposne = commentService.getCommentsByPostId(id);
 		return ResponseEntity.ok().body(commentResposne);
 	}

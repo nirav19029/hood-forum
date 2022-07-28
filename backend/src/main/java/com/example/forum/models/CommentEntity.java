@@ -6,8 +6,12 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @Entity
+@Document(collection="comment")
 public class CommentEntity {
+    
     @Id
     private String commentId;
 

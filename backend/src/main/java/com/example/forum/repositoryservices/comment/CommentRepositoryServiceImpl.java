@@ -47,11 +47,14 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
 
     @Override
     public ArrayList<Comment> getCommentsByPostId(String postId) {
+
         ArrayList<Comment> comments=new ArrayList<>();
+        
         Query query = new Query();            //For the query parameter
         query.addCriteria(Criteria.where("postId").is(postId));  //key- postId, value- Input vaue in postId parameter
+       
         List<CommentEntity> commentEntity = mongoTemplate.find(query, CommentEntity.class);
-
+        // System.out.println(commentEntity);
         System.out.println("list of comments are"+"/n"+commentEntity);
         for(CommentEntity temp:commentEntity){
             /*Converting the list of entities into Dto and adding it in the dto list*/
@@ -123,7 +126,7 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
 
             // //run it!
             // mongoTemplate.upsert(query, update, "comment");
-            return null;
+            return modelMapper.map(commentEntity.get(), Comment.class);
         }
         throw new IllegalArgumentException("commentId not present");
     }
