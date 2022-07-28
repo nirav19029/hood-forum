@@ -56,7 +56,7 @@ public class PostRepositoryServiceImpl implements PostRepositoryService{
     public Post createPost(Post post) {
         PostEntity postEntity = modelMapper.map(post, PostEntity.class);
         
-        PostEntity postenty= postRepository.save(postEntity);
+        postRepository.save(postEntity);
         return post ;
         
     }
