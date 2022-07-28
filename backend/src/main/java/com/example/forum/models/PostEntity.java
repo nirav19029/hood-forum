@@ -2,6 +2,7 @@ package com.example.forum.models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,21 +13,20 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.example.forum.dto.Image;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 class Like {
     private String useId;
 }
 
-
 @Data
-@Document(collection="post")
+@Document(collection = "post")
 @NoArgsConstructor
-public class PostEntity{
+public class PostEntity {
     private String title;
     // @Id
     // @JsonIgnore
@@ -38,5 +38,5 @@ public class PostEntity{
     private Date createdOn;
     private String description;
 
-    private String upload;
+    private String imageUrl;
 }
