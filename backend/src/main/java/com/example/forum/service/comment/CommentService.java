@@ -6,7 +6,7 @@ import com.example.forum.dto.Comment;
 
 public interface CommentService {
 
-    ArrayList<Comment> getAllComments(String postId);
+    ArrayList<Comment> getCommentsByPostId(String postId);
 
     Comment getCommentByCommentId(String id) throws Exception;
 

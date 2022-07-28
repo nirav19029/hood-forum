@@ -40,13 +40,15 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
     }
 
     @Override
-    public ArrayList<Comment> getAllComments(String postId) {
+    public ArrayList<Comment> getCommentsByPostId(String postId) {
+
         ArrayList<Comment> comments=new ArrayList<>();
+        
         Query query = new Query();            //For the query parameter
         query.addCriteria(Criteria.where("postId").is(postId));  //key- postId, value- Input vaue in postId parameter
-        // List<CommentEntity> commentEntity = mongoTemplate.find(query, CommentEntity.class);
-        List<CommentEntity> commentEntity = commentRepository.findAll();
-
+       
+        List<CommentEntity> commentEntity = mongoTemplate.find(query, CommentEntity.class);
+        // System.out.println(commentEntity);
         System.out.println("list of comments are"+"/n"+commentEntity);
         for(CommentEntity temp:commentEntity){
             /*Converting the list of entities into Dto and adding it in the dto list*/
@@ -68,13 +70,17 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
     }
     @Override
     public String deleteByCommentId(String id) throws Exception {
-        Optional<CommentEntity> commentEntity = commentRepository.findById(id);
-        if(commentEntity.isPresent()){
-            commentRepository.deleteById(id);
-            return "Post Deleted";
-        }else{
-            throw new Exception("Id not present");
+        // Optional<CommentEntity> commentEntity = commentRepository.findById(id);
+        Query query = new Query();            //For the query parameter
+        query.addCriteria(Criteria.where("_id").is(id));  //key- postId, value- Input vaue in postId parameter
+        DeleteResult commentEntity = mongoTemplate.remove(query, CommentEntity.class);
+        if(commentEntity.wasAcknowledged()){
+            return "comment deleted";
         }
+        else{
+            throw new Exception("PostId not present");
+        }
+        
     }
     
     @Override

@@ -5,25 +5,37 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.example.forum.dto.Comment;
 import com.example.forum.repositoryservices.comment.CommentRepositoryService;
-
+import org.springframework.data.mongodb.core.MongoTemplate;
+import com.example.forum.models.CommentEntity;
 @Service
 public class CommentServiceImpl implements CommentService{
 
     @Autowired
     CommentRepositoryService commentRepositoryService;
 
+    @Autowired
+    private MongoTemplate mongoTemplate;
+
     @Override
     public Comment createComment(Comment comment) {
+        Date date = new Date();
+        long time = date.getTime();
+        Timestamp dateTime=new Timestamp(time);
+
+        comment.setTimestamp(dateTime);
         return commentRepositoryService.createComment(comment);
     }
 
     @Override
-    public ArrayList<Comment> getAllComments(String postId) {
-        return commentRepositoryService.getAllComments(postId);
+    public ArrayList<Comment> getCommentsByPostId(String postId) {
+        return commentRepositoryService.getCommentsByPostId(postId);
     }
     
     @Override
@@ -56,9 +68,17 @@ public class CommentServiceImpl implements CommentService{
     @Override
     public Comment updateComment(String id, Comment commentRequest) throws Exception{
         try {
-            Comment comment = commentRepositoryService.getCommentByCommentId(id);
-            comment.setDescription(commentRequest.getDescription());
-            comment.setCreatedOn(commentRequest.getCreatedOn());
+
+            Query query = new Query();
+            query.addCriteria(Criteria.where("_id").is(id));
+            Comment comment = mongoTemplate.findOne(query, Comment.class);
+
+            Update updatequery = new Update();
+
+            updatequery.set("comment",commentRequest.getComment());
+
+            mongoTemplate.upsert(query,updatequery,Comment.class);
+            
             return comment;
         } catch (Exception e) {
             throw (e);

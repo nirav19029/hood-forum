@@ -1,6 +1,7 @@
 package com.example.forum.models;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,15 +12,15 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.example.forum.dto.Comment;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-
-
+class Like {
+    private String useId;
+}
 
 
 @Data
@@ -34,8 +35,8 @@ public class PostEntity{
     private String postId;
 
     private String userId;
-    private String createdOn;
+    private Date createdOn;
     private String description;
-
-    private ArrayList<Comment> replies ;
+    
+    private String upload;
 }

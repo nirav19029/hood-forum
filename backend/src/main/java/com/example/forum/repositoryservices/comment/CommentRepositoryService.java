@@ -9,7 +9,7 @@ public interface CommentRepositoryService {
 
     Comment createComment(Comment comment);
 
-    ArrayList<Comment> getAllComments(String postId);
+    ArrayList<Comment> getCommentsByPostId(String postId);
 
     Comment getCommentByCommentId(String id) throws Exception;
 

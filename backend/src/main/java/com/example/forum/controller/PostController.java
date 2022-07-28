@@ -72,7 +72,7 @@ public class PostController {
 	}
 
 	@PutMapping(GET_API_ID)
-	public ResponseEntity<Post> updatePost(@PathVariable String id, @RequestBody Post post) throws Exception {
+	public ResponseEntity<Post> updatePost(@PathVariable(name = "id") String id, @RequestBody Post post) throws Exception {
 
 		Post postResposne = postService.updatePost(id, post);
 
