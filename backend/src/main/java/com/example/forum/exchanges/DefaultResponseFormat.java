@@ -18,11 +18,7 @@ public class DefaultResponseFormat{
     private String message  = "Default error Message |  server phat gya hai ";
     private List<String> errors ;
 
-
     
-
-    
-
     
 
 }

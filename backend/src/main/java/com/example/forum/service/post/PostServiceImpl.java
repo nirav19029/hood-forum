@@ -38,7 +38,7 @@ public class PostServiceImpl implements PostService{
             Post post = postRepositoryService.findById(id);
             post.setTitle(postRequest.getTitle());
             post.setDescription(postRequest.getDescription());
-            post.setCreatedOn(postRequest.getCreatedOn());
+            post.setCreatedDate(postRequest.getCreatedDate());
             return post;
         } catch (Exception e) {
             throw (e);
