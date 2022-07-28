@@ -3,6 +3,8 @@ package com.example.forum.exchanges;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.expression.spel.ast.OpAnd;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Data;
 
@@ -21,4 +23,5 @@ public class PostRequestBody{
     @NotNull(message = "description must not be null")
     private String description;
 
+    private MultipartFile image;
 }

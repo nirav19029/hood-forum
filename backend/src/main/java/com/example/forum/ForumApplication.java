@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 
 
-// @EnableMongoAuditing
+@EnableMongoAuditing
 @SpringBootApplication
 @Log4j2
 public class ForumApplication {

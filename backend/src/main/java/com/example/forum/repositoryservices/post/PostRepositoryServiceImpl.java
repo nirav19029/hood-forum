@@ -46,11 +46,15 @@ public class PostRepositoryServiceImpl implements PostRepositoryService{
 
     @Override
     public Post createPost(Post post) {
+
         PostEntity postEntity = modelMapper.map(post, PostEntity.class);
         
-        postRepository.save(postEntity);
+        PostEntity createdEntity =  postRepository.save(postEntity);
 
-        return post ;
+        Post createdPost =  modelMapper.map(createdEntity, Post.class) ;
+
+
+        return createdPost ;
         
     }
 

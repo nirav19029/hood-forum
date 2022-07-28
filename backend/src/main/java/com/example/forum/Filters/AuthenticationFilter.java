@@ -8,22 +8,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.forum.dto.GoogleAuthUserDetails;
-import com.example.forum.service.AuthService.AuthService;
+import com.example.forum.dto.UserDetails;
+import com.example.forum.service.AuthService.GoogleAuthService;
+import com.example.forum.utils.JwtManager;
 import com.example.forum.utils.TokenProcessor;
 
 
 
 
 @Component
+@Order(1)
  public class AuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     TokenProcessor  tokenProcessor;
     @Autowired
-    AuthService authService ;
+    GoogleAuthService authService ;
+
+    @Autowired
+    JwtManager jwtManager ;
 
     @Override
 
@@ -40,9 +46,11 @@ import com.example.forum.utils.TokenProcessor;
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
 
            String token = tokenProcessor.extractToken(requestTokenHeader) ;
+           System.out.println("token --- " + token);
            
             try{
-                   GoogleAuthUserDetails userDetails =  authService.verifyGooogleAccessToken(token) ;
+                   UserDetails userDetails =  jwtManager.validateJwtToken(token) ;
+                    System.out.println("user_details at filter" + userDetails);
 
                    request.setAttribute("user_details", userDetails);
 
@@ -61,7 +69,12 @@ import com.example.forum.utils.TokenProcessor;
         filterChain.doFilter(request, response);
     }
 
-
+    @Override
+protected boolean shouldNotFilter(HttpServletRequest request)
+  throws ServletException {
+    String path = request.getRequestURI();
+    return "/forum/v1/signin".equals(path);
+}
 
 }
 
