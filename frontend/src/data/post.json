@@ -1,7 +1,5 @@
 [{
-  "_id": {
-    "$oid": "62dee4c9637ab84d89196d91"
-  },
+  "_id": "62dee4c9637ab84d89196d91",
   "title": "new post",
   "userId": "123",
   "description": "qwerdftybuncbewobco cwqbciqwbcoqw wqcqnoqw",
@@ -10,9 +8,7 @@
   "date":"25-05-2022",
   "userName":"Ryan"
 },{
-  "_id": {
-    "$oid": "62dee522637ab84d89196d92"
-  },
+  "_id": "62dee522637ab84d89196d92",
   "title": "new post 1",
   "userId": "1234",
   "description": "This is description",
@@ -21,9 +17,7 @@
   "date":"27-07-2022",
   "userName":"John"
 },{
-  "_id": {
-    "$oid": "62dfe522637ab84d89196d92"
-  },
+  "_id": "62dfe522637ab84d89196d92",
   "title": "new post 12",
   "userId": "12345",
   "description": "This is a long description",

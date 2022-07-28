@@ -13,7 +13,7 @@ const Card = (e) => {
     <div className="card-container" id={e.value._id}>
       {/* Userinfo */}
       <div className="container">
-        <div className="data">
+        <div className="data" onClick={() => e.setActive(e.value._id)}>
           <Avatar src="/broken-image.jpg" className="avatar-img" />
           <div className="info">
             <h3>{e.value.userName}</h3>

@@ -7,12 +7,12 @@ import PostAddIcon from "@mui/icons-material/PostAdd";
 import "./AddFormModal.css";
 
 const style = {
-  position: "absolute",
+  position: "relative",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "50%",
-  height: "50%",
+  width: "55%",
+  height: "55%",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -48,13 +48,12 @@ export default function BasicModal() {
             <textarea rows="2" required style={{ width: "100%" }} id="topic" />
           </div>
 
-          <br />
           <div style={{ fontSize: "120%" }}>
             <label for="description">
               <b>Description :</b>
             </label>
             <textarea
-              rows="8"
+              rows="4"
               required
               style={{
                 width: "100%",
@@ -63,7 +62,6 @@ export default function BasicModal() {
             />
           </div>
 
-          <br />
           <div>
             <Button variant="contained" component="label">
               <AddAPhotoIcon style={{ marginRight: "10px" }} />
@@ -72,7 +70,6 @@ export default function BasicModal() {
             </Button>
           </div>
 
-          <br />
           <div className="finalButton">
             <Button variant="contained" color="success">
               Post
