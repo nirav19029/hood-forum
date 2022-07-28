@@ -19,7 +19,7 @@ import com.example.forum.dto.UserDetails;
 public class JwtManager implements Serializable {
 
    private static final long serialVersionUID = 7008375124389347049L;
-    public static final long TOKEN_VALIDITY = 10 * 60 * 60; 
+    public static final long TOKEN_VALIDITY =  24*60*60;  // in seconds
     @Value("${jwt.secret}") 
    private String jwtSecret; 
 

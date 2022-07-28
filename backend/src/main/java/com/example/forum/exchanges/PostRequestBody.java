@@ -9,8 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data
-public class PostRequestBody {
-
+public class PostRequestBody{
+    
     @NotEmpty(message = "title must not be empty")
     @NotNull(message = "title must not be null")
     private String title;

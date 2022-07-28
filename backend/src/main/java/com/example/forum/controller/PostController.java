@@ -72,14 +72,11 @@ public class PostController {
 
 	@PostMapping(POST_API)
 	public ResponseEntity<Post> createPost(@Valid @ModelAttribute PostRequestBody postRequestBody,
-			@RequestAttribute(name = "user_details", required = false) UserDetails userDetails) throws IOException {
+			@RequestAttribute(name = "user_details", required = false) UserDetails userDetails) throws Exception {
 
-		// here we have access to user_details set by authorizing service
-		// +
-		// we have access to req body set by client
-
-		// perfrom validation or opetation such as userId from request is same as
-		// provided by user request or something
+		if(postRequestBody.getUserId().equals(userDetails.getEmail()) == false){
+			throw new Exception("Unauthorized action! ") ;
+		}
 
 		// this is dummy data sent through authService
 		// System.out.println("user_details at post controller" + userDetails);
@@ -96,9 +93,8 @@ public class PostController {
 		try {
 			postResponse = postService.createPost(post);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			// e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
+
+			throw new Exception(e.getMessage());
 		}
 
 		return new ResponseEntity<Post>(postResponse, HttpStatus.CREATED);

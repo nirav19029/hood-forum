@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -30,8 +32,11 @@ public class Post {
 
     private String postId;
 
+
     private String userId;
-    private Date createdOn;
+
+    private Date createdDate;
+
     private String description;
 
     private String imageUrl;

@@ -24,11 +24,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post createPost(Post post) throws IOException {
-        Date date = new Date();
-        long time = date.getTime();
-        Timestamp dateTime = new Timestamp(time);
-
-        post.setCreatedOn(dateTime);
         return postRepositoryService.createPost(post);
     }
 
@@ -38,7 +33,7 @@ public class PostServiceImpl implements PostService {
             Post post = postRepositoryService.findById(id);
             post.setTitle(postRequest.getTitle());
             post.setDescription(postRequest.getDescription());
-            post.setCreatedOn(postRequest.getCreatedOn());
+            post.setCreatedDate(postRequest.getCreatedDate());
             return post;
         } catch (Exception e) {
             throw (e);
