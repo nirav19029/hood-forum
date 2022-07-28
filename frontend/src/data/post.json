@@ -1,0 +1,28 @@
+[{
+  "_id": "62dee4c9637ab84d89196d91",
+  "title": "new post",
+  "userId": "123",
+  "description": "qwerdftybuncbewobco cwqbciqwbcoqw wqcqnoqw",
+  "like": 0,
+  "_class": "com.example.forum.models.PostEntity",
+  "date":"25-05-2022",
+  "userName":"Ryan"
+},{
+  "_id": "62dee522637ab84d89196d92",
+  "title": "new post 1",
+  "userId": "1234",
+  "description": "This is description",
+  "like": 0,
+  "_class": "com.example.forum.models.PostEntity",
+  "date":"27-07-2022",
+  "userName":"John"
+},{
+  "_id": "62dfe522637ab84d89196d92",
+  "title": "new post 12",
+  "userId": "12345",
+  "description": "This is a long description",
+  "like": 15,
+  "_class": "com.example.forum.models.PostEntity",
+  "date":"27-07-2023",
+  "userName":"Prakhar"
+}]

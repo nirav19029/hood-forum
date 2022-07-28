@@ -7,19 +7,33 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+
+import javax.inject.Provider;
+import javax.print.event.PrintEvent;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import javax.validation.constraints.Null;
 
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.forum.dto.UserDetails;
 import com.example.forum.dto.Post;
 import com.example.forum.exchanges.PostRequestBody;
+import com.example.forum.service.post.ImageUploadService;
 import com.example.forum.service.post.PostService;
 
 
@@ -31,13 +45,15 @@ public class PostController {
 	private PostService postService;
 
 	@Autowired
-	private ModelMapper modelMapper ;
+	private ImageUploadService imageUploadService;
 
-	public static final String POST_API_ENDPOINT="forum/v1";
-	public static final String GET_API="post/all";
-	public static final String GET_API_ID="post/{id}";   //here Id is postId of the comments
-	public static final String POST_API="createPost";
+	@Autowired
+	private ModelMapper modelMapper;
 
+	public static final String POST_API_ENDPOINT = "forum/v1";
+	public static final String GET_API = "post/all";
+	public static final String GET_API_ID = "post/{id}";
+	public static final String POST_API = "createPost";
 
 	@GetMapping(GET_API)
 	public List<Post> getAllPosts() {
@@ -55,12 +71,31 @@ public class PostController {
 	}
 
 	@PostMapping(POST_API)
-	public ResponseEntity<Post> createPost( @Valid @RequestBody  PostRequestBody postRequestBody) throws IOException{
-		// first step is to check the format of postRequestBody
-		// then convert to actual post object
-		Post post = modelMapper.map(postRequestBody, Post.class) ;
+	public ResponseEntity<Post> createPost(@Valid @ModelAttribute PostRequestBody postRequestBody,
+			@RequestAttribute(name = "user_details", required = false) UserDetails userDetails) throws Exception {
 
-		Post postResponse = postService.createPost(post);
+		if(postRequestBody.getUserId().equals(userDetails.getEmail()) == false){
+			throw new Exception("Unauthorized action! ") ;
+		}
+
+		// this is dummy data sent through authService
+		// System.out.println("user_details at post controller" + userDetails);
+		Post post = new Post();
+		String imageUrl;
+		if (postRequestBody.getImage() != null) {
+			imageUrl = imageUploadService.save(postRequestBody.getImage());
+			post.setImageUrl(imageUrl);
+		}
+		post.setTitle(postRequestBody.getTitle());
+		post.setDescription(postRequestBody.getDescription());
+		post.setUserId(postRequestBody.getUserId());
+		Post postResponse;
+		try {
+			postResponse = postService.createPost(post);
+		} catch (IOException e) {
+
+			throw new Exception(e.getMessage());
+		}
 
 		return new ResponseEntity<Post>(postResponse, HttpStatus.CREATED);
 	}

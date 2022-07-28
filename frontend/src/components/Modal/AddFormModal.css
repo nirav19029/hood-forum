@@ -1,0 +1,27 @@
+.main-modal{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 2rem;
+}
+
+.title{
+    position: relative;
+    font-size: 150%;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.finalButton{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;    
+}
+
+textarea{
+    font-size: large;
+}
+
+.modal-container{
+    overflow: scroll;
+}

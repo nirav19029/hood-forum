@@ -1,0 +1,89 @@
+.card-container{
+    width: 100%;
+    margin-top: 0.8rem;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 1rem;
+    box-shadow: 0.3rem 0.3rem 0.4rem grey;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.8rem;
+}
+
+.data{
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.avatar-img {
+    width: 4rem;
+    height: 4rem;
+    align-items: center;
+}
+
+
+.follow {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+    color: black;
+}
+
+.info {
+    margin-left: 10px;
+}
+
+h3 {
+    margin: 0;
+    margin-top: 2px;
+    padding: 0;
+}
+
+p {
+    margin: 0;
+    margin-top: 2px;
+    padding: 0;
+}
+
+/* content css */
+
+.card-title{
+    margin-left: 1.5rem;
+}
+
+/* updation css */
+.updation{
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.7;
+    margin: 0 1rem;
+}
+
+
+
+
+/* like,update and share */
+
+.container-1 {
+    display: flex;
+    border-top: 1px solid black;
+}
+
+.like,
+.comment,
+.share {
+    width: 33.33%;
+    color: black;
+    justify-content: center;
+}
+
+#likeIcon,
+#commentIcon,
+#shareIcon {
+    margin-right: 1rem;
+    color: black;
+}
+
