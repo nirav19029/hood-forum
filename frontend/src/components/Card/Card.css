@@ -12,13 +12,13 @@
     margin-top: 0.8rem;
 }
 
-.data {
+.data{
     display: flex;
     align-items: center;
-    margin-left: 3rem;
+    margin-left: 2rem;
 }
 
-.img {
+.avatar-img {
     width: 4rem;
     height: 4rem;
     align-items: center;
@@ -28,9 +28,8 @@
 .follow {
     display: flex;
     align-items: center;
-    margin-right: 3rem;
+    margin-right: 2rem;
     color: black;
-
 }
 
 .info {
@@ -52,7 +51,7 @@ p {
 /* content css */
 
 .card-title{
-    margin-left: 0.8rem;
+    margin-left: 1.5rem;
 }
 
 /* updation css */

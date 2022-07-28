@@ -2,6 +2,7 @@ package com.example.forum.models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,16 +21,13 @@ import org.springframework.data.annotation.LastModifiedDate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 class Like {
     private String useId;
 }
 
-
 @Data
-@Document(collection="post")
+@Document(collection = "post")
 @NoArgsConstructor
-
 public class PostEntity{
     private String title;
    
@@ -45,5 +43,5 @@ public class PostEntity{
     private Date createdOn;
     private String description;
 
-    private String upload;
+    private String imageUrl;
 }

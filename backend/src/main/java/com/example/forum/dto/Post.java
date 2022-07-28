@@ -18,21 +18,18 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-
 class Like {
     private String useId;
 }
 
-
-
 @Data
-public class Post{
+@AllArgsConstructor
+@NoArgsConstructor
+public class Post {
 
     @NotNull
     private String title;
 
-    
     private String postId;
 
 
@@ -42,5 +39,5 @@ public class Post{
 
     private String description;
 
-    private String upload;
+    private String imageUrl;
 }
