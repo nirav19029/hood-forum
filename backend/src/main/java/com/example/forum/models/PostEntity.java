@@ -13,7 +13,6 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import com.example.forum.dto.Image;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;

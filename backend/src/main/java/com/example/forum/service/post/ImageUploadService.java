@@ -5,8 +5,6 @@ import java.util.stream.Stream;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.forum.dto.Image;
-
 public interface ImageUploadService {
 
     void createDirIfNotExist();
