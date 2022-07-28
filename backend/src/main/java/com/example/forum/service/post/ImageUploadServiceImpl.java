@@ -15,15 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.forum.dto.Image;
-import com.example.forum.repositoryservices.image.ImageRepositoryService;
 import com.example.forum.utils.FileUtil;
 
 @Service
 public class ImageUploadServiceImpl implements ImageUploadService {
-
-    @Autowired
-    ImageRepositoryService imageRepositoryService;
 
     @Override
     public void createDirIfNotExist() {
@@ -39,10 +34,8 @@ public class ImageUploadServiceImpl implements ImageUploadService {
         byte[] bytes = new byte[0];
         createDirIfNotExist();
         try {
-            System.out.println("here");
             bytes = file.getBytes();
             Files.write(Paths.get(FileUtil.folderPath + file.getOriginalFilename()), bytes);
-            System.out.println("here5");
             String imageUrl = FileUtil.folderPath + file.getOriginalFilename();
             return imageUrl;
         } catch (IOException e) {
