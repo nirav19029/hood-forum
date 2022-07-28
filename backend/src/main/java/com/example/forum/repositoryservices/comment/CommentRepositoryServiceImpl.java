@@ -105,17 +105,14 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
     public Comment updateComment(String id, Comment commentRequest) throws IllegalArgumentException {
         Optional<CommentEntity> commentEntity = commentRepository.findById(id);
         if(commentEntity.isPresent()){
-            // CommentEntity cmtEnty = commentEntity.get();
-            // cmtEnty.setComment(commentRequest.getComment());
+            Query query = new Query();
+            query.addCriteria(Criteria.where("_id").is(id));
 
-            // Date date = new Date();
-            // long time = date.getTime();
-            // Timestamp dateTime=new Timestamp(time);
-            // cmtEnty.setUpdatedOn(dateTime);
-            
-            // commentRepository.save(cmtEnty);
-            // return modelMapper.map(cmtEnty, Comment.class);
+            Update updatequery = new Update();
+            updatequery.set("comment",commentRequest.getComment());
+            mongoTemplate.upsert(query,updatequery,CommentEntity.class);
 
+            // CommentEntity commentety = mongoTemplate.findOne(query, CommentEntity.class);
             // //build query
             // Query query = new Query(Criteria.where("_id").is(id));
 
@@ -126,6 +123,7 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
 
             // //run it!
             // mongoTemplate.upsert(query, update, "comment");
+            return null;
         }
         throw new IllegalArgumentException("commentId not present");
     }
