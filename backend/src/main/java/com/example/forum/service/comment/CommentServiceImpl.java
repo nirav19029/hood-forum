@@ -59,12 +59,9 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public Comment updateComment(String id, Comment commentRequest) throws Exception{
+    public Comment updateComment(String id, Comment commentRequest) throws IllegalArgumentException{
         try {
-            Comment comment = commentRepositoryService.getCommentByCommentId(id);
-            comment.setComment(commentRequest.getComment());
-            comment.setTimestamp(commentRequest.getTimestamp());
-            return comment;
+            return commentRepositoryService.updateComment(id,commentRequest);
         } catch (Exception e) {
             throw (e);
         }   

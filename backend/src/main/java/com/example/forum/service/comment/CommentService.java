@@ -16,7 +16,7 @@ public interface CommentService {
 
     String deleteCommentByPostId(String id) throws Exception;
 
-    Comment updateComment(String id, Comment comment) throws Exception;
+    Comment updateComment(String id, Comment comment) throws IllegalArgumentException;
 
 
 }

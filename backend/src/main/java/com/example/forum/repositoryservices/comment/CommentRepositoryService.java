@@ -1,7 +1,6 @@
 package com.example.forum.repositoryservices.comment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.example.forum.dto.Comment;
 
@@ -16,5 +15,7 @@ public interface CommentRepositoryService {
     String deleteByCommentId(String id) throws Exception;
 
     String deleteByPostId(String id) throws Exception;
+
+    Comment updateComment(String id, Comment commentRequest) throws IllegalArgumentException;
         
 }
