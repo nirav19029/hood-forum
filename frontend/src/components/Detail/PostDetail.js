@@ -5,11 +5,11 @@ import Card from "../Card/Card";
 const PostDetail = (props) => {
   const data = require("./../../data/post.json");
   console.log(props.active);
-  const requireId = data.filter((value) => value._id === props.active);
-  console.log(requireId);
+  const requirePost = data.filter((value) => value._id === props.active);
+  console.log(requirePost);
   return (
     <div className="detail-container">
-      <Card value={requireId} />
+      <Card value={requirePost[0]} />
     </div>
   );
 };
