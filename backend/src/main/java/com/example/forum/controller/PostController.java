@@ -32,10 +32,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.forum.dto.GoogleUserDetails;
 import com.example.forum.dto.Post;
-import com.example.forum.exchanges.GetPostResponse;
 import com.example.forum.exchanges.PostRequestBody;
 import com.example.forum.service.post.ImageUploadService;
-import com.example.forum.service.post.PostService;;
+import com.example.forum.service.post.PostService;
+
 
 @RestController
 @RequestMapping(PostController.POST_API_ENDPOINT)
@@ -101,7 +101,7 @@ public class PostController {
 	}
 
 	@PutMapping(GET_API_ID)
-	public ResponseEntity<Post> updatePost(@PathVariable String id, @RequestBody Post post) throws Exception {
+	public ResponseEntity<Post> updatePost(@PathVariable(name = "id") String id, @RequestBody Post post) throws Exception {
 
 		Post postResposne = postService.updatePost(id, post);
 
@@ -109,10 +109,8 @@ public class PostController {
 	}
 
 	@DeleteMapping(GET_API_ID)
-	public ResponseEntity<GetPostResponse> deletePost(@PathVariable(name = "id") String id) throws Exception {
-		postService.deletePost(id);
-		GetPostResponse getPostResponse = new GetPostResponse();
-		return new ResponseEntity<GetPostResponse>(getPostResponse, HttpStatus.OK);
+	public ResponseEntity<String>deletePost(@PathVariable(name = "id") String id) throws Exception{
+		return new ResponseEntity<String>(postService.deletePost(id), HttpStatus.OK);
 	}
 
 }
