@@ -79,11 +79,17 @@ p {
     color: black;
     justify-content: center;
 }
-
+.like{
+    opacity: 0.5;
+}
 #likeIcon,
 #commentIcon,
 #shareIcon {
     margin-right: 1rem;
     color: black;
 }
-
+.afterClick{
+    width: 33.33%;
+    color: rgb(0, 78, 0);
+    opacity: 1;
+}
