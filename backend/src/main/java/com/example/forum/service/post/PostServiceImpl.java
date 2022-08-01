@@ -28,17 +28,14 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post updatePost(String id, Post postRequest) throws Exception {
+    public Post updatePost(String id, Post postRequest) throws IllegalArgumentException{
         try {
-            Post post = postRepositoryService.findById(id);
-            post.setTitle(postRequest.getTitle());
-            post.setDescription(postRequest.getDescription());
-            post.setCreatedDate(postRequest.getCreatedDate());
-            return post;
+            return postRepositoryService.updatePost(id,postRequest);
         } catch (Exception e) {
             throw (e);
-        }
+        }   
     }
+
 
     @Override
     public String deletePost(String id) throws Exception {

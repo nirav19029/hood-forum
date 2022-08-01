@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -18,9 +17,11 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-class Like {
-    private String useId;
-}
+
+
+
+
+
 
 @Data
 @AllArgsConstructor
@@ -29,6 +30,8 @@ public class Post {
 
     @NotNull
     private String title;
+    @Id
+    @JsonIgnore
 
     private String postId;
 

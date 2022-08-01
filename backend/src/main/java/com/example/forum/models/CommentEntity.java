@@ -6,8 +6,12 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 @Entity
+@Document(collection="comment")
 public class CommentEntity {
+    
     @Id
     private String commentId;
 
@@ -18,18 +22,21 @@ public class CommentEntity {
 
     private Date timestamp;
 
+    private Date updatedOn;
+
     //NoArgs
     public CommentEntity(){
         super();
     }
     //AllArgs
-    public CommentEntity(String commentId, String postId, String userId, String comment,Date timestamp){
+    public CommentEntity(String commentId, String postId, String userId, String comment,Date timestamp,Date updatedOn){
         super();
         this.commentId = commentId;
         this.postId = postId;
         this.userId = userId;
         this.comment = comment;
         this.timestamp = timestamp;
+        this.updatedOn = updatedOn;
     }
 
     public String getCommentId(){
@@ -71,4 +78,11 @@ public class CommentEntity {
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
 	}
+
+    public Date getUpdatedOn(){
+        return updatedOn;
+    }
+    public void setUpdatedOn(Date updatedOn){
+        this.updatedOn = updatedOn;
+    }
 }

@@ -15,7 +15,7 @@ const Card = (e) => {
     event.currentTarget.classList.toggle('afterClick');
   }
   return (
-    <div className="card-container" id={e.value._id}>
+    <div className={"card-container " + e.className} id={e.value._id}>
       {/* Userinfo */}
       <div className="container">
         <div className="data" onClick={() => e.setActive(e.value._id)}>
