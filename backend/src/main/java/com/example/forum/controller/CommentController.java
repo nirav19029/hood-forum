@@ -1,5 +1,8 @@
 package com.example.forum.controller;
 import java.util.ArrayList;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,7 +51,7 @@ public class CommentController {
 
 	//create comment
     @PostMapping(POST_API)
-	public ResponseEntity<Comment> postComment(@RequestBody Comment commentBody, @RequestAttribute("user_details") User user) throws Exception{
+	public ResponseEntity<Comment> postComment(@Valid @RequestBody Comment commentBody, @RequestAttribute(name = "user_details", required = false) User user) throws Exception{
 
 
 		if(user.getUserId().equals(commentBody.getUserId())== false){

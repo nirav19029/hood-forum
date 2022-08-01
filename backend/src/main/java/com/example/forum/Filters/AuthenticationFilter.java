@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.example.forum.dto.GoogleUserDetails;
+import com.example.forum.dto.User;
 import com.example.forum.service.AuthService.GoogleAuthService;
+import com.example.forum.service.user.UserService;
 import com.example.forum.utils.JwtManager;
 import com.example.forum.utils.TokenProcessor;
 
@@ -30,6 +32,8 @@ import com.example.forum.utils.TokenProcessor;
 
     @Autowired
     JwtManager jwtManager ;
+    @Autowired
+    UserService userService;
 
     @Override
 
@@ -50,9 +54,17 @@ import com.example.forum.utils.TokenProcessor;
            
             try{
                    GoogleUserDetails userDetails =  jwtManager.validateJwtToken(token) ;
-                    System.out.println("user_details at filter" + userDetails);
+                   User user =  userService.findByUserEmail(userDetails.getEmail()) ;
 
-                   request.setAttribute("user_details", userDetails);
+                   if(user!=null){
+                    request.setAttribute("user_details", user );
+                   }else{
+                    throw new Exception("user not registered with us , please signin first") ;
+                   }
+
+                    
+
+                   
 
 
 

@@ -16,9 +16,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class Comment {
-    @Id
-    @JsonIgnore
-    @JsonProperty("_id")
     private String commentId;
 
     @NotNull
