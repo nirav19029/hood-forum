@@ -5,6 +5,7 @@ package com.example.forum.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,31 +15,27 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.validation.constraints.NotBlank;
 // import javax.persistence.OneToOne;
 // import javax.persistence.PrimaryKeyJoinColumn;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Data
 @Document(collection="user")
-@NoArgsConstructor
+@Data
 public class UserEntity {
-    @Id                                                      //Primary Key
-    @GeneratedValue(strategy = GenerationType.IDENTITY)      //To automaticall generate the primary key value     //GenerationType.IDENTITY is used to auto-increment the id 
-    private String userId;
+ 
+    @NotNull
+    @NotBlank
+    private String name ;
+    @NotNull
+    @NotBlank
+    private String email ;
+    @NotNull
+    @NotBlank
+    private String image_url ;
 
-    @Column(nullable=false, unique=true)
-    private String email;
-
-    @Column(length = 30, nullable = false, unique = true)
-    private String username;
-
-    @Column(length = 60, nullable = false)
-    private String password;
-
-    private boolean active;
-
-    private boolean removed;
-
-    private Date createdAt;
+   @Id
+    private String userId ;
 
 }

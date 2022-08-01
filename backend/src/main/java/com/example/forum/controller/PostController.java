@@ -30,8 +30,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.GoogleUserDetails;
 import com.example.forum.dto.Post;
+import com.example.forum.dto.User;
 import com.example.forum.exchanges.PostRequestBody;
 import com.example.forum.service.post.ImageUploadService;
 import com.example.forum.service.post.PostService;
@@ -72,9 +73,9 @@ public class PostController {
 
 	@PostMapping(POST_API)
 	public ResponseEntity<Post> createPost(@Valid @ModelAttribute PostRequestBody postRequestBody,
-			@RequestAttribute(name = "user_details", required = false) UserDetails userDetails) throws Exception {
+			@RequestAttribute(name = "user_details", required = true) User user) throws Exception {
 
-		if(postRequestBody.getUserId().equals(userDetails.getEmail()) == false){
+		if(postRequestBody.getUserId().equals(user.getUserId()) == false){
 			throw new Exception("Unauthorized action! ") ;
 		}
 

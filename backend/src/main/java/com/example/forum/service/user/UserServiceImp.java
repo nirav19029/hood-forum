@@ -25,6 +25,12 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
+    public User findByUserEmail(String email) throws Exception {
+
+        return userRepositoryService.findByUserEmail(email);
+    }
+
+    @Override
     public void save(User user) {
         userRepositoryService.save(user);
     }

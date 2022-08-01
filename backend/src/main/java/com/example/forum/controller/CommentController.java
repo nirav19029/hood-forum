@@ -1,5 +1,8 @@
 package com.example.forum.controller;
 import java.util.ArrayList;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,11 +10,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.forum.dto.Comment;
+import com.example.forum.dto.User;
 import com.example.forum.service.comment.CommentService;
 
 @RestController
@@ -46,9 +51,14 @@ public class CommentController {
 
 	//create comment
     @PostMapping(POST_API)
-	public ResponseEntity<Comment> postComment(@RequestBody Comment postRequest){
+	public ResponseEntity<Comment> postComment(@Valid @RequestBody Comment commentBody, @RequestAttribute(name = "user_details", required = false) User user) throws Exception{
 
-		Comment commentResponse = commentService.createComment(postRequest);
+
+		if(user.getUserId().equals(commentBody.getUserId())== false){
+
+			 throw new Exception("Authorized , you cannot comment on behalf of" + commentBody.getUserId()) ;
+		}
+		Comment commentResponse = commentService.createComment(commentBody);
 
 		return new ResponseEntity<Comment>(commentResponse, HttpStatus.CREATED);
 	}

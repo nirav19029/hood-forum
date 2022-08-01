@@ -1,6 +1,7 @@
 package com.example.forum.exchanges.Auth;
 
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.GoogleUserDetails;
+import com.example.forum.dto.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +10,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class SignInResponse {
 
-    private UserDetails user_details ;
+    private User user_details ;
     private String jwt_token  ;
     
 }
