@@ -11,4 +11,6 @@ public interface UserRepositoryService {
 
     public void save(User user);
 
+    public User findByUserEmail(String email);
+
 }

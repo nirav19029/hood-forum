@@ -12,7 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.GoogleUserDetails;
 import com.example.forum.service.AuthService.GoogleAuthService;
 import com.example.forum.utils.JwtManager;
 import com.example.forum.utils.TokenProcessor;
@@ -49,7 +49,7 @@ import com.example.forum.utils.TokenProcessor;
            System.out.println("token --- " + token);
            
             try{
-                   UserDetails userDetails =  jwtManager.validateJwtToken(token) ;
+                   GoogleUserDetails userDetails =  jwtManager.validateJwtToken(token) ;
                     System.out.println("user_details at filter" + userDetails);
 
                    request.setAttribute("user_details", userDetails);

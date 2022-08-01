@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.GoogleUserDetails;
 import com.example.forum.dto.Post;
 import com.example.forum.exchanges.GetPostResponse;
 import com.example.forum.exchanges.PostRequestBody;

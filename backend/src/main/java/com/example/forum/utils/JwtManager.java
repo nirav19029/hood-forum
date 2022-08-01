@@ -13,18 +13,19 @@ import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.GoogleUserDetails;
+import com.example.forum.dto.User;
 
 @Component 
 public class JwtManager implements Serializable {
 
    private static final long serialVersionUID = 7008375124389347049L;
-    public static final long TOKEN_VALIDITY =  24*60*60;  // in seconds
+    public static final long TOKEN_VALIDITY =  24*60*60*100;  // in seconds
     @Value("${jwt.secret}") 
    private String jwtSecret; 
 
 
-   public String generateJwtToken(UserDetails userDetails) throws Exception {
+   public String generateJwtToken(User userDetails) throws Exception {
     
 
 
@@ -41,7 +42,7 @@ public class JwtManager implements Serializable {
      
       
    } 
-   public UserDetails validateJwtToken(String token) throws Exception { 
+   public GoogleUserDetails validateJwtToken(String token) throws Exception { 
 
          Algorithm algorithm = Algorithm.HMAC256(jwtSecret);
          JWTVerifier verifier = JWT.require(algorithm)
@@ -53,7 +54,7 @@ public class JwtManager implements Serializable {
          String email = jwt.getClaim("email").asString() ;
          String image_url = jwt.getClaim("image_url").asString() ;
              
-         return new UserDetails(name, email , image_url) ; 
+         return new GoogleUserDetails(name, email , image_url) ; 
       
    } 
    public String getEmailFromToken(String token) {

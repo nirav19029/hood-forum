@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.User;
+import com.example.forum.dto.GoogleUserDetails;
 import com.example.forum.exchanges.Auth.SignInResponse;
 import com.example.forum.service.AuthService.GoogleAuthService;
 import com.example.forum.service.user.UserService;
@@ -34,6 +35,9 @@ public class AuthController {
     // JwtTokenManager jwtTokenManager ;
     @Autowired
     JwtManager jwtManager ;
+
+    @Autowired 
+    UserService userService ;
     
     public static final String AUTH_API_ENDPOINT="forum/v1";
 	public static final String SIGNIN_API="signin";
@@ -47,19 +51,32 @@ public class AuthController {
 
        
         //task 1 
-        UserDetails userDetails = googleAuthService.verifyGooogleAccessToken(googleIdToken) ;
+        GoogleUserDetails userDetails = googleAuthService.verifyGooogleAccessToken(googleIdToken) ;
  
         
+        // check and save
 
-     
+        User user =  userService.findByUserEmail(userDetails.getEmail()) ;
+
+         if(user==null){
+            //save
+                String email = userDetails.getEmail() ;
+                String name = userDetails.getName();
+                String image_url = userDetails.getImage_url() ;
+
+            user = new User(null, name,email, image_url) ;
+            
+            userService.save(user);
+         }
+
         // task 2
-        String  jwtToken =  jwtManager.generateJwtToken(userDetails) ;
+        String  jwtToken =  jwtManager.generateJwtToken(user) ;
       
 
 
         
         // task 3
-        SignInResponse responseBody = new SignInResponse(userDetails,jwtToken ) ;
+        SignInResponse responseBody = new SignInResponse(user,jwtToken ) ;
 
 
 

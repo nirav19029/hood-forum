@@ -3,10 +3,10 @@ package com.example.forum.service.AuthService;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.GoogleUserDetails;
 
 public interface GoogleAuthService {
 
-    UserDetails verifyGooogleAccessToken(String token) throws RuntimeException, GeneralSecurityException, IOException ;
+    GoogleUserDetails verifyGooogleAccessToken(String token) throws RuntimeException, GeneralSecurityException, IOException ;
     
 }

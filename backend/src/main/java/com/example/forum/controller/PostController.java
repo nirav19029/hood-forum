@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.GoogleUserDetails;
 import com.example.forum.dto.Post;
 import com.example.forum.exchanges.GetPostResponse;
 import com.example.forum.exchanges.PostRequestBody;
@@ -72,7 +72,7 @@ public class PostController {
 
 	@PostMapping(POST_API)
 	public ResponseEntity<Post> createPost(@Valid @ModelAttribute PostRequestBody postRequestBody,
-			@RequestAttribute(name = "user_details", required = false) UserDetails userDetails) throws Exception {
+			@RequestAttribute(name = "user_details", required = false) GoogleUserDetails userDetails) throws Exception {
 
 		if(postRequestBody.getUserId().equals(userDetails.getEmail()) == false){
 			throw new Exception("Unauthorized action! ") ;
