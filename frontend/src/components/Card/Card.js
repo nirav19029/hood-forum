@@ -10,8 +10,8 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 import "./Card.css";
 
 const Card = (e) => {
-  console.log(e);
-  const handleClick = event =>{
+  // console.log(e);
+  const handleClick = event => {
     event.currentTarget.classList.toggle('afterClick');
   }
   return (
@@ -46,9 +46,9 @@ const Card = (e) => {
 
       <div className="container-1">
         <Button variant="" className="like" onClick={handleClick}>
-        <ThumbUpAltIcon style={{marginRight: '1rem'}}/>
-       Like
-     </Button>
+          <ThumbUpAltIcon style={{ marginRight: '1rem' }} />
+          Like
+        </Button>
         <Button variant="" className="comment">
           <CommentOutlinedIcon id="commentIcon" />
           Comment

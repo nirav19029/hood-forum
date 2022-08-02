@@ -11,4 +11,20 @@
 #detail-card{
     margin: 0;
     box-shadow: none;
+    
+}
+#comments-view{
+    float:left;
+    overflow-y: scroll;
+    height: 100vh;
+    padding: 0 5%;
+
+}
+#singleComment{
+    border-bottom: 1px solid grey;
+    padding-bottom: 5px;
+}
+.commentBody{
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
 }
