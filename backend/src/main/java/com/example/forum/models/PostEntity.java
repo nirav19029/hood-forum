@@ -2,7 +2,9 @@ package com.example.forum.models;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,10 +40,9 @@ public class PostEntity{
     private Date createdDate;
     @LastModifiedDate
     private Date lastModifiedDate;
-
     private String userId;
     private Date createdOn;
     private String description;
-
     private String imageUrl;
+    private Set<String> likedBy = new HashSet<>();
 }

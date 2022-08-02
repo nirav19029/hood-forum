@@ -1,8 +1,11 @@
 package com.example.forum.repositoryservices.post;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 // import javax.management.Query;
 
@@ -99,15 +102,13 @@ public class PostRepositoryServiceImpl implements PostRepositoryService{
 
             Query query = new Query();
             query.addCriteria(Criteria.where("_id").is(id));
-
             Update updatequery = new Update();
             updatequery.set("description",postRequest.getDescription());
+            updatequery.set("likedBy",postRequest.getLikedBy());
             mongoTemplate.upsert(query,updatequery,PostEntity.class);
-
             return null;
         }
         else
         throw new IllegalArgumentException("postId not present");
     }
-    
 }
