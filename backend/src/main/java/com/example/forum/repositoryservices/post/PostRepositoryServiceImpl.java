@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired; 
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Update;
@@ -94,21 +96,27 @@ public class PostRepositoryServiceImpl implements PostRepositoryService{
         throw new Exception("PostId not present");
     }
 
-    @Override
-    public Post updatePost(String id, Post postRequest) throws IllegalArgumentException {
 
+
+    @Override
+    public Post updatePost(Map<String, Object> updates,String id) throws IllegalArgumentException {
         Optional<PostEntity> postEntity = postRepository.findById(id);
         if(postEntity.isPresent()){
 
             Query query = new Query();
             query.addCriteria(Criteria.where("_id").is(id));
             Update updatequery = new Update();
-            updatequery.set("description",postRequest.getDescription());
-            updatequery.set("likedBy",postRequest.getLikedBy());
-            mongoTemplate.upsert(query,updatequery,PostEntity.class);
+            FindAndModifyOptions option =  new FindAndModifyOptions().returnNew(true).upsert(false);
+            for (Map.Entry<String, Object> entry  : updates.entrySet()) {
+                updatequery.set(entry.getKey(),entry.getValue());
+            }
+            mongoTemplate.findAndModify(query, updatequery,option,PostEntity.class);
             return null;
         }
         else
         throw new IllegalArgumentException("postId not present");
+       
+       
     }
+    
 }

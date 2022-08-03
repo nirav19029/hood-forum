@@ -2,6 +2,7 @@ package com.example.forum.service.post;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,7 +13,7 @@ public interface PostService {
     
     Post createPost(Post post) throws IOException;
 
-    Post updatePost(String id,Post post) throws Exception;
+    Post updatePost(Map<String, Object> updates,String id) throws Exception;
 
     String deletePost(String id) throws Exception;
 

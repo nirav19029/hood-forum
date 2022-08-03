@@ -2,6 +2,7 @@ package com.example.forum.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import javax.validation.constraints.Null;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -36,7 +38,6 @@ import com.example.forum.dto.User;
 import com.example.forum.exchanges.PostRequestBody;
 import com.example.forum.service.post.ImageUploadService;
 import com.example.forum.service.post.PostService;
-
 
 @RestController
 @RequestMapping(PostController.POST_API_ENDPOINT)
@@ -75,8 +76,8 @@ public class PostController {
 	public ResponseEntity<Post> createPost(@Valid @ModelAttribute PostRequestBody postRequestBody,
 			@RequestAttribute(name = "user_details", required = true) User user) throws Exception {
 
-		if(postRequestBody.getUserId().equals(user.getUserId()) == false){
-			throw new Exception("Unauthorized action! ") ;
+		if (postRequestBody.getUserId().equals(user.getUserId()) == false) {
+			throw new Exception("Unauthorized action! ");
 		}
 
 		// this is dummy data sent through authService
@@ -101,16 +102,19 @@ public class PostController {
 		return new ResponseEntity<Post>(postResponse, HttpStatus.CREATED);
 	}
 
-	@PutMapping(GET_API_ID)
-	public ResponseEntity<Post> updatePost(@PathVariable(name = "id") String id, @RequestBody Post post) throws Exception {
-
-		Post postResposne = postService.updatePost(id, post);
-
-		return ResponseEntity.ok().body(postResposne);
+	@PatchMapping(GET_API_ID)
+	public ResponseEntity<Post> partialUpdateGeneric(
+			@RequestBody Map<String, Object> updates,
+			@PathVariable("id") String id, @RequestAttribute(name = "user_details", required = true) User user)throws Exception {
+				if (updates.get("userId").equals(user.getUserId()) == false && (updates.containsKey("description") || updates.containsKey("imageurl"))) {
+					throw new Exception("Unauthorized action! ");
+				}
+		Post postResponse = postService.updatePost(updates, id);
+		return ResponseEntity.ok().body(postResponse);
 	}
 
 	@DeleteMapping(GET_API_ID)
-	public ResponseEntity<String>deletePost(@PathVariable(name = "id") String id) throws Exception{
+	public ResponseEntity<String> deletePost(@PathVariable(name = "id") String id) throws Exception {
 		return new ResponseEntity<String>(postService.deletePost(id), HttpStatus.OK);
 	}
 

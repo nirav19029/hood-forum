@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +29,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post updatePost(String id, Post postRequest) throws IllegalArgumentException{
+    public Post updatePost(Map<String, Object> updates,String id) throws IllegalArgumentException{
         try {
-            return postRepositoryService.updatePost(id,postRequest);
+            return postRepositoryService.updatePost(updates,id);
         } catch (Exception e) {
             throw (e);
         }   
