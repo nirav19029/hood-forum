@@ -5,10 +5,15 @@ import Button from "@mui/material/Button";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import CommentOutlinedIcon from "@mui/icons-material/CommentOutlined";
 import ShareIcon from "@mui/icons-material/Share";
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
+
 import "./Card.css";
 
 const Card = (e) => {
-  console.log(e);
+  // console.log(e);
+  const handleClick = event => {
+    event.currentTarget.classList.toggle('afterClick');
+  }
   return (
     <div className={"card-container " + e.className} id={e.value._id}>
       {/* Userinfo */}
@@ -40,8 +45,8 @@ const Card = (e) => {
       {/* Like,comment and share */}
 
       <div className="container-1">
-        <Button variant="" className="like">
-          <ThumbUpOffAltIcon id="likeIcon" />
+        <Button variant="" className="like" onClick={handleClick}>
+          <ThumbUpAltIcon style={{ marginRight: '1rem' }} />
           Like
         </Button>
         <Button variant="" className="comment">
