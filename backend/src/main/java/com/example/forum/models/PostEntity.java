@@ -15,6 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id ;
@@ -23,9 +25,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-class Like {
-    private String useId;
-}
+
 
 @Data
 @Document(collection = "post")
@@ -34,7 +34,7 @@ public class PostEntity{
     private String title;
    
 
-    @Id
+    @javax.persistence.Id
     private String postId;
     @CreatedDate
     private Date createdDate;

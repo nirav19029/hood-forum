@@ -6,16 +6,14 @@ import lombok.Data;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.bson.types.ObjectId;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
@@ -27,19 +25,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({"_id","createdDate","lastModifiedDate","_class"})
 public class Post {
 
     @NotNull
     private String title;
     @Id
-    @JsonIgnore
-
+    // @JsonIgnore
+    // @JsonProperty("_id")
     private String postId;
 
 
     private String userId;
 
     private Date createdDate;
+
+    private Date lastModifiedDate;
 
     private String description;
 
