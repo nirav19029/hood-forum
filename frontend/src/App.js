@@ -20,12 +20,16 @@ const App = () => {
           <div className="col-8">
             <div>
               {data.map((e) => {
-                return <Card value={e} key={e._id} setActive={setActive} />;
+                return <div>
+                <Card value={e} key={e._id} setActive={setActive} />
+                
+                </div>;
               })}
             </div>
           </div>
           <div className="col-4">
             <PostDetail active={active} />
+          
           </div>
         </div>
       ) : (
@@ -34,7 +38,11 @@ const App = () => {
             <div className="main-data">
               {data.map((e) => {
                 return (
-                  <Card value={e} key={e._id.$oid} setActive={setActive} />
+                 <div> <Card value={e} key={e._id.$oid} setActive={setActive} />
+                 
+                 
+                 </div>
+          
                 );
               })}
             </div>
