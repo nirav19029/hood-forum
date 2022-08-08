@@ -8,6 +8,7 @@ import "./App.css";
 const App = () => {
   let data = require("./data/post.json");
   const [active, setActive] = useState("");
+  // const[currentLoggedinUser, setCurrentLoggedinUser] = useState("")
   const [post, setPost] = useState([]);
   const [current, setCurrent] = useState(null);
 

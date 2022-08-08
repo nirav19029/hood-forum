@@ -11,7 +11,9 @@ const PostDetail = (props) => {
   const data = require("./../../data/post.json");
   let [comment, setComment] = useState([]); // for viewing comment
   let [curr, setCurrentState] = useState(""); // active state
-  let loggedInUserId = "123";
+  let loggedInUserId = "62dee4c9637ab84d89196d91";
+
+
   ///-------------commentView--------------------------------------
 
   useEffect(() => {
@@ -23,7 +25,6 @@ const PostDetail = (props) => {
       .then((data) => {
         // console.log(data[0]);
         setComment([...data]);
-
       })
   });
   //------------------------------------------------------------------------------------
@@ -42,6 +43,7 @@ const PostDetail = (props) => {
     console.log(updateCommentList.length + "==>final");
     setComment([...updateCommentList])
     console.info('You clicked the delete icon.');
+    console.log(props + "props.active");
   };
   //--------------------------------------------------------------
 
@@ -59,9 +61,8 @@ const PostDetail = (props) => {
           return <div id="singleComment">
             <div className="commentBody">
 
-              {/* {loggedInUserId === setCurrentState.userId ? */}
-                {/* ( */}
-                  <Stack spacing={1} direction="row">
+                  {loggedInUserId == props.active ? (
+                    <Stack spacing={1} direction="row">
                   <h4>{comm.name}</h4>
                   <Chip
                     onClick = {() => handleDelete(comm.id)}
@@ -78,8 +79,8 @@ const PostDetail = (props) => {
                     variant="filled"
                     size="small"
                   /> </Stack>
-                  {/* ) : */}
-                {/* (<Stack spacing={1} direction="row">
+                  ) : (
+                    <Stack spacing={1} direction="row">
                   <h4>{comm.name}</h4>
                   <Chip
                     onClick={() => handleClick}
@@ -87,8 +88,8 @@ const PostDetail = (props) => {
                     icon={<ThumbUpOffAltIcon />}
                     variant="filled"
                     size="small"
-                  /></Stack>
-                )} */}
+                  /> </Stack>
+                  )}
               {comm.body}</div>
           </div>
         })
@@ -98,20 +99,7 @@ const PostDetail = (props) => {
     </div>
   );
 };
-{/* /* <Chip
-              onDelete={()=>handleDelete(comm.id)}
-              label="Delete"
-              deleteIcon={<DeleteIcon />}
-              size="small"
-              variant="filled"
-            />
-             <Chip
-              onClick={()=>handleClick}
-              label="Like"
-              icon={<ThumbUpOffAltIcon />}
-              variant="filled"
-              size="small"
-            /> */}
+
 
 
 
