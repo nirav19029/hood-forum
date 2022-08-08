@@ -1,6 +1,7 @@
 package com.example.forum.repositoryservices.post;
 
 import java.util.List;
+import java.util.Map;
 
 import com.example.forum.dto.Post;
 
@@ -15,6 +16,6 @@ public interface PostRepositoryService {
 
     public String delete(String id) throws Exception;
 
-    Post updatePost(String id, Post postRequest) throws IllegalArgumentException;
+    Post updatePost(Map<String, Object> updates,String id) throws IllegalArgumentException;
     
 }

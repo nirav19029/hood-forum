@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import com.example.forum.dto.User;
 import com.example.forum.models.UserEntity;
@@ -55,6 +57,16 @@ public class UserRepositoryServiceImpl implements UserRepositoryService{
         UserEntity userEntity = modelMapper.map(user, UserEntity.class);
         userRepository.save(userEntity);
 
+    }
+
+    @Override
+    public User findByUserEmail(String email) {
+        Query query = new Query();            //For the query parameter
+        query.addCriteria(Criteria.where("email").is(email));  //key- postId, value- Input vaue in postId parameter
+        UserEntity userEntity = mongoTemplate.findOne(query, UserEntity.class);
+
+        User user = modelMapper.map(userEntity, User.class);
+        return user;
     }
     
 }

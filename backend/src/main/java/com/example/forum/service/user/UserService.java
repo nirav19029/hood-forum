@@ -10,4 +10,5 @@ public interface UserService {
     User findByUserId(String id) throws Exception;    //By Id
 
     void save(User user); 
+    User findByUserEmail(String email) throws Exception;
 }

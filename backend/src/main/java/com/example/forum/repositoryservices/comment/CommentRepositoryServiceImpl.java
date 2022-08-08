@@ -41,8 +41,9 @@ public class CommentRepositoryServiceImpl implements CommentRepositoryService{
     @Override
     public Comment createComment(Comment comment) {
         CommentEntity commentEntity = modelMapper.map(comment, CommentEntity.class);
-        commentRepository.save(commentEntity);
-        return comment;
+        CommentEntity createdComment =  commentRepository.save(commentEntity);
+        return modelMapper.map(createdComment, Comment.class);
+       
     }
 
     @Override

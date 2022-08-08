@@ -10,7 +10,7 @@ import "./Card.css";
 const Card = (e) => {
   console.log(e);
   return (
-    <div className="card-container" id={e.value._id}>
+    <div className={"card-container " + e.className} id={e.value._id}>
       {/* Userinfo */}
       <div className="container">
         <div className="data" onClick={() => e.setActive(e.value._id)}>
