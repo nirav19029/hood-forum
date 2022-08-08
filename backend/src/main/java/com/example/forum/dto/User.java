@@ -2,7 +2,6 @@ package com.example.forum.dto;
 
 import lombok.Data;
 
-import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    @Id
-    @JsonIgnore
-    @JsonProperty("_id")
+   
+    
     private String userId;
+    private String name ;
     private String email;
-    private String username;
-    private String password;
-    private String createdAt;
+    private String image_url ;
+    
+   
 
 }

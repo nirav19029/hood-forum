@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -43,4 +44,6 @@ public class Post {
     private String description;
 
     private String imageUrl;
+    
+    private Set<String> likedBy;
 }

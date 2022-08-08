@@ -7,7 +7,7 @@ import java.util.Collections;
 import org.apache.tomcat.util.digester.SystemPropertySource;
 import org.springframework.stereotype.Service;
 
-import com.example.forum.dto.UserDetails;
+import com.example.forum.dto.GoogleUserDetails;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
@@ -18,7 +18,7 @@ import com.google.api.client.json.gson.GsonFactory ;
 public class GoogleAuthServiceImpl  implements GoogleAuthService{
     private static final String CLIENT_ID = "65516858471-jt2m59irk8sjtnfgodt98o70iqrbtqjo.apps.googleusercontent.com" ;
     @Override
-   public  UserDetails  verifyGooogleAccessToken(String token) throws RuntimeException, GeneralSecurityException, IOException{
+   public  GoogleUserDetails  verifyGooogleAccessToken(String token) throws RuntimeException, GeneralSecurityException, IOException{
 
 
  
@@ -41,7 +41,7 @@ public class GoogleAuthServiceImpl  implements GoogleAuthService{
                
 
 
-                return new UserDetails(name, email, pictureUrl) ;
+                return new GoogleUserDetails(name, email, pictureUrl) ;
 
     
     
