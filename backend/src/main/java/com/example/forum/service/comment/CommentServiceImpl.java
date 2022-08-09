@@ -25,11 +25,11 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Comment createComment(Comment comment) {
-        Date date = new Date();
-        long time = date.getTime();
-        Timestamp dateTime=new Timestamp(time);
+        // Date date = new Date();
+        // long time = date.getTime();
+        // Timestamp dateTime=new Timestamp(time);
 
-        comment.setTimestamp(dateTime);
+        // comment.setTimestamp(dateTime);
         return commentRepositoryService.createComment(comment);
     }
 

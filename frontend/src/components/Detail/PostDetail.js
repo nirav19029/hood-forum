@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import "./PostDetail.css";
 import Card from "../Card/Card";
 import { Tab } from "@mui/material";
@@ -6,26 +6,33 @@ import Chip from '@mui/material/Chip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import Stack from "@mui/material/Stack";
+// import userContext from "../../Contexts/userContext";
 
 const PostDetail = (props) => {
-  const data = require("./../../data/post.json");
+  console.log({props})
   let [comment, setComment] = useState([]); // for viewing comment
-  let [curr, setCurrentState] = useState(""); // active state
-  let loggedInUserId = "123";
+
+  // const user = useContext(userContext);
+  let user = {
+    id: "123",
+    name: "nproker"
+  }
+  
+  let loggedInUserId = user.id;
+
+
+
   ///-------------commentView--------------------------------------
 
   useEffect(() => {
-    const requirePost = data.filter((value) => value._id === props.active);
-    setCurrentState(requirePost[0])
-    let url = "https://jsonplaceholder.typicode.com/comments";
+  
+    let url = "http://192.168.5.128:8080/forum/v1/post/comment/62e8bd8a3160e9725a0fc7ac";
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data[0]);
         setComment([...data]);
-
       })
-  });
+  },[]);
   //------------------------------------------------------------------------------------
 
   const postComment = () => {
@@ -42,6 +49,7 @@ const PostDetail = (props) => {
     console.log(updateCommentList.length + "==>final");
     setComment([...updateCommentList])
     console.info('You clicked the delete icon.');
+    console.log(props + "props.active");
   };
   //--------------------------------------------------------------
 
@@ -52,16 +60,17 @@ const PostDetail = (props) => {
 
   return (
     <div className="detail-container">
-      <Card value={curr} className="custom" />
+      <Card value={props.postData} className="custom" />
       <br></br>
-      <div id="comments-view">
-        {comment.map((comm) => {
+      
+        {comment.length>0 ? (
+          <div id="comments-view">
+          {comment.map((comm) => {
           return <div id="singleComment">
             <div className="commentBody">
 
-              {/* {loggedInUserId === setCurrentState.userId ? */}
-                {/* ( */}
-                  <Stack spacing={1} direction="row">
+                  {loggedInUserId == props.postData.userId ? (
+                    <Stack spacing={1} direction="row">
                   <h4>{comm.name}</h4>
                   <Chip
                     onClick = {() => handleDelete(comm.id)}
@@ -78,8 +87,8 @@ const PostDetail = (props) => {
                     variant="filled"
                     size="small"
                   /> </Stack>
-                  {/* ) : */}
-                {/* (<Stack spacing={1} direction="row">
+                  ) : (
+                    <Stack spacing={1} direction="row">
                   <h4>{comm.name}</h4>
                   <Chip
                     onClick={() => handleClick}
@@ -87,31 +96,20 @@ const PostDetail = (props) => {
                     icon={<ThumbUpOffAltIcon />}
                     variant="filled"
                     size="small"
-                  /></Stack>
-                )} */}
+                  /> </Stack>
+                  )}
               {comm.body}</div>
           </div>
         })
         }
-      </div>
+        </div>
+        ): (<div></div>)}
+      
 
     </div>
   );
 };
-{/* /* <Chip
-              onDelete={()=>handleDelete(comm.id)}
-              label="Delete"
-              deleteIcon={<DeleteIcon />}
-              size="small"
-              variant="filled"
-            />
-             <Chip
-              onClick={()=>handleClick}
-              label="Like"
-              icon={<ThumbUpOffAltIcon />}
-              variant="filled"
-              size="small"
-            /> */}
+
 
 
 

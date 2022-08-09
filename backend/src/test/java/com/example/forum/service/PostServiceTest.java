@@ -41,6 +41,9 @@ public class PostServiceTest {
     protected Post post1;
     protected Post post2;
     protected Post post3;
+    protected Post post4;
+    protected Post post5;
+    protected Post post6;
 
     @Autowired
     private PostServiceImpl postService;
@@ -55,6 +58,9 @@ public class PostServiceTest {
         post1=posts[0];
         post2=posts[1];
         post3=posts[2];
+        post4=posts[3];
+        post5=posts[4];
+        post6=posts[5];
         return Arrays.asList(posts);
     }
 
@@ -72,12 +78,22 @@ public class PostServiceTest {
     @Test
     public void getAllPosts() throws IOException {
         when(postRepositoryServiceMock.getAllPost())
-        .thenReturn(Arrays.asList(post1,post2,post3));
+        .thenReturn(Arrays.asList(post1,post2,post3,post4,post5,post6));
 
         List<Post> p = postService.getAllPost();
 
-        System.out.println(p);
-        assertEquals(3, p.size());
-        // assertEquals("62e8bd8a3160e9725a0fc7ac", p.get(0).getPostId());
+        // System.out.println(p);
+        assertEquals(6, p.size());
+        assertEquals("62e8bd8a3160e9725a0fc7ac", p.get(0).getPostId());
     }
+
+    // @Test
+    // public void getPostByPostId() throws Exception{
+    //   when(postRepositoryServiceMock.findById("62e8bd8a3160e9725a0fc7ac"))
+    //   .thenReturn(post1);
+    // }
+
+    // Post post = postService.getPostById("62e8bd8a3160e9725a0fc7ac");
+
+    // assertEquals(post1,post);
 }
