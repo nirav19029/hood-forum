@@ -34,7 +34,7 @@ public class PostEntity{
     private String title;
    
 
-    @javax.persistence.Id
+    @Id
     private String postId;
     @CreatedDate
     private Date createdDate;

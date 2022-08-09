@@ -1,60 +1,50 @@
 [
-    {
-    "_id": {
-      "$oid": "62e8bd8a3160e9725a0fc7ac"
-    },
+  {
     "title": "new post",
-    "createdDate": {
-      "$date": {
-        "$numberLong": "1659420042160"
-      }
-    },
-    "lastModifiedDate": {
-      "$date": {
-        "$numberLong": "1659420042160"
-      }
-    },
+    "postId": "62e8bd8a3160e9725a0fc7ac",
     "userId": "62e7bee29f2a533d38dc4d6c",
     "description": "welcome",
-    "_class": "com.example.forum.models.PostEntity",
+    "imageUrl": null,
     "likedBy": []
   },
   {
-    "_id": {
-      "$oid": "62e8bdf93160e9725a0fc7ad"
-    },
     "title": "this is title",
-    "createdDate": {
-      "$date": {
-        "$numberLong": "1659420153471"
-      }
-    },
-    "lastModifiedDate": {
-      "$date": {
-        "$numberLong": "1659420153471"
-      }
-    },
+    "postId": "62e8bdf93160e9725a0fc7ad",
     "userId": "62e7bee29f2a533d38dc4d6c",
     "description": "qwertty",
-    "_class": "com.example.forum.models.PostEntity"
+    "imageUrl": null,
+    "likedBy": []
   },
   {
-    "_id": {
-      "$oid": "62e8be0f3160e9725a0fc7ae"
-    },
     "title": "this is title",
-    "createdDate": {
-      "$date": {
-        "$numberLong": "1659420175869"
-      }
-    },
-    "lastModifiedDate": {
-      "$date": {
-        "$numberLong": "1659420175869"
-      }
-    },
+    "postId": "62e8be0f3160e9725a0fc7ae",
     "userId": "62e7bee29f2a533d38dc4d6c",
     "description": "qwertty",
-    "_class": "com.example.forum.models.PostEntity"
+    "imageUrl": null,
+    "likedBy": []
+  },
+  {
+    "title": "naya post",
+    "postId": "62e7bee29f2a533d38dc4d6c",
+    "userId": "62e7bee29f2a533d38dc4d6c",
+    "description": "naya description",
+    "imageUrl": null,
+    "likedBy": []
+  },
+  {
+    "title": "naya post",
+    "postId": "62f0f793ff0d757e313a16a3",
+    "userId": "62e7bee29f2a533d38dc4d6c",
+    "description": "naya description",
+    "imageUrl": null,
+    "likedBy": []
+  },
+  {
+    "title": "new p",
+    "postId": "62f0f7c3ff0d757e313a16a4",
+    "userId": "62e7bee29f2a533d38dc4d6c",
+    "description": "enter hote hi khatam",
+    "imageUrl": null,
+    "likedBy": []
   }
 ]
