@@ -10,15 +10,14 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 import "./Card.css";
 
 const Card = (e) => {
-  // console.log(e);
   const handleClick = event => {
     event.currentTarget.classList.toggle('afterClick');
   }
   return (
-    <div className={"card-container " + e.className} id={e.value._id}>
+    <div className={"card-container " + e.className} id={e.value.postId}>
       {/* Userinfo */}
       <div className="container">
-        <div className="data" onClick={() => e.setActive(e.value._id)}>
+        <div className="data" onClick={() => e.setActive(e.value.postId)}>
           <Avatar src="/broken-image.jpg" className="avatar-img" />
           <div className="info">
             <h3>{e.value.userName}</h3>

@@ -2,8 +2,11 @@ package com.example.forum.Filters;
 
 import java.io.IOException;
 
+import javax.management.RuntimeErrorException;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -75,6 +78,8 @@ import com.example.forum.utils.TokenProcessor;
 
             }
 
+        }else{
+            throw new RuntimeException("Authenticatin token not found or not in correct format");
         }
        
 
@@ -85,9 +90,20 @@ import com.example.forum.utils.TokenProcessor;
 protected boolean shouldNotFilter(HttpServletRequest request)
   throws ServletException {
     String path = request.getRequestURI();
-    return "/forum/v1/signin".equals(path);
+    String method = request.getMethod() ;
+    return method.equals("OPTIONS") || "/forum/v1/signin".equals(path);
 }
 
+// @Override
+// public void doFilter( ServletRequest req,  ServletResponse res, final FilterChain chain) throws IOException, ServletException {
+//     final HttpServletResponse response = (HttpServletResponse) res;
+//     response.setHeader("Access-Control-Allow-Origin", "*");
+//     response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
+//     response.setHeader("Access-Control-Max-Age", "3600");
+//     response.setHeader("Access-Control-Allow-Headers", "Authorization, x-xsrf-token, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
+//             "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+//     chain.doFilter(req, res);
+// }
 }
 
 
