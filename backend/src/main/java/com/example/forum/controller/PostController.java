@@ -18,6 +18,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import javax.validation.constraints.Null;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -57,6 +58,7 @@ public class PostController {
 	public static final String GET_API_ID = "post/{id}";
 	public static final String POST_API = "createPost";
 
+	// @CrossOrigin
 	@GetMapping(GET_API)
 	public List<Post> getAllPosts() {
 
