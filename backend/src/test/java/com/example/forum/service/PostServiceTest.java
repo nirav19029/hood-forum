@@ -82,8 +82,18 @@ public class PostServiceTest {
 
         List<Post> p = postService.getAllPost();
 
-        System.out.println(p);
+        // System.out.println(p);
         assertEquals(6, p.size());
         assertEquals("62e8bd8a3160e9725a0fc7ac", p.get(0).getPostId());
     }
+
+    // @Test
+    // public void getPostByPostId() throws Exception{
+    //   when(postRepositoryServiceMock.findById("62e8bd8a3160e9725a0fc7ac"))
+    //   .thenReturn(post1);
+    // }
+
+    // Post post = postService.getPostById("62e8bd8a3160e9725a0fc7ac");
+
+    // assertEquals(post1,post);
 }

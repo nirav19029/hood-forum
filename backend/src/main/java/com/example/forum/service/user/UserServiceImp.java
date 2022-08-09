@@ -21,7 +21,8 @@ public class UserServiceImp implements UserService{
 
     @Override
     public User findByUserId(String id) throws Exception {
-        return userRepositoryService.findByUserId(id);
+        User user =  userRepositoryService.findByUserId(id);
+        return user ;
     }
 
     @Override

@@ -34,7 +34,8 @@ public class UserRepositoryServiceImpl implements UserRepositoryService{
     public User findByUserId(String id) throws Exception {
         Optional<UserEntity> userEntity = userRepository.findById(id);
         if(userEntity.isPresent()){
-            return modelMapper.map(userEntity, User.class);
+            User user =  modelMapper.map(userEntity.get(), User.class);
+            return user ;
         }else{
             throw new Exception("User Not found");
         }
