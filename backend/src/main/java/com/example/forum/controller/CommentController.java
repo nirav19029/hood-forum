@@ -56,7 +56,7 @@ public class CommentController {
 
 		if(user.getUserId().equals(commentBody.getUserId())== false){
 
-			 throw new Exception("Authorized , you cannot comment on behalf of" + commentBody.getUserId()) ;
+			 throw new Exception("UnAuthorized , you cannot comment on behalf of" + commentBody.getUserId()) ;
 		}
 		Comment commentResponse = commentService.createComment(commentBody);
 

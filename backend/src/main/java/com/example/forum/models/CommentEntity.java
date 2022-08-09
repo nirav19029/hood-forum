@@ -5,7 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Entity
@@ -19,9 +21,9 @@ public class CommentEntity {
     private String userId;
 
     private String comment;
-
+    @CreatedDate
     private Date timestamp;
-
+    @LastModifiedDate
     private Date updatedOn;
 
     //NoArgs
