@@ -65,7 +65,9 @@ public class UserRepositoryServiceImpl implements UserRepositoryService{
         Query query = new Query();            //For the query parameter
         query.addCriteria(Criteria.where("email").is(email));  //key- postId, value- Input vaue in postId parameter
         UserEntity userEntity = mongoTemplate.findOne(query, UserEntity.class);
-
+         if(userEntity ==  null){
+            return null ;
+         }
         User user = modelMapper.map(userEntity, User.class);
         return user;
     }

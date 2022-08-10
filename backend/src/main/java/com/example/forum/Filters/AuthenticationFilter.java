@@ -53,7 +53,7 @@ import com.example.forum.utils.TokenProcessor;
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
 
            String token = tokenProcessor.extractToken(requestTokenHeader) ;
-           System.out.println("token --- " + token);
+        //    System.out.println("token --- " + token);
            
             try{
                    GoogleUserDetails userDetails =  jwtManager.validateJwtToken(token) ;
@@ -93,17 +93,6 @@ protected boolean shouldNotFilter(HttpServletRequest request)
     String method = request.getMethod() ;
     return method.equals("OPTIONS") || "/forum/v1/signin".equals(path);
 }
-
-// @Override
-// public void doFilter( ServletRequest req,  ServletResponse res, final FilterChain chain) throws IOException, ServletException {
-//     final HttpServletResponse response = (HttpServletResponse) res;
-//     response.setHeader("Access-Control-Allow-Origin", "*");
-//     response.setHeader("Access-Control-Allow-Methods", "POST, PUT, GET, OPTIONS, DELETE");
-//     response.setHeader("Access-Control-Max-Age", "3600");
-//     response.setHeader("Access-Control-Allow-Headers", "Authorization, x-xsrf-token, Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, " +
-//             "Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-//     chain.doFilter(req, res);
-// }
 }
 
 

@@ -58,7 +58,6 @@ public class PostController {
 	public static final String GET_API_ID = "post/{id}";
 	public static final String POST_API = "createPost";
 
-	// @CrossOrigin
 	@GetMapping(GET_API)
 	public List<Post> getAllPosts() {
 
@@ -117,6 +116,7 @@ public class PostController {
 
 	@DeleteMapping(GET_API_ID)
 	public ResponseEntity<String> deletePost(@PathVariable(name = "id") String id) throws Exception {
+
 		return new ResponseEntity<String>(postService.deletePost(id), HttpStatus.OK);
 	}
 

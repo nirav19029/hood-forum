@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonIgnoreProperties({"_id","createdDate","lastModifiedDate","_class"})
+@JsonIgnoreProperties({"_id","_class"})
 public class Post {
 
     @NotNull
