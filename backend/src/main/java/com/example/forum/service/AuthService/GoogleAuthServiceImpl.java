@@ -17,13 +17,14 @@ import com.google.api.client.json.gson.GsonFactory ;
 @Service
 public class GoogleAuthServiceImpl  implements GoogleAuthService{
     private static final String CLIENT_ID = "65516858471-jt2m59irk8sjtnfgodt98o70iqrbtqjo.apps.googleusercontent.com" ;
+    private static final String CLIENT_ID_HARSH = "693462110352-tf62k67vg2fokedt87ior7sroecpev7l.apps.googleusercontent.com";
     @Override
    public  GoogleUserDetails  verifyGooogleAccessToken(String token) throws RuntimeException, GeneralSecurityException, IOException{
 
 
  
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), GsonFactory.getDefaultInstance())
-        .setAudience(Collections.singletonList(CLIENT_ID))
+        .setAudience(Collections.singletonList(CLIENT_ID_HARSH))
         .build();
 
 

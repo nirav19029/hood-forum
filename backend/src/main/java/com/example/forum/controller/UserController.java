@@ -24,6 +24,6 @@ public class UserController {
     @GetMapping(GET_API)
     public User findByUserNameAndProfilePage(@PathVariable(name="id") String userId) throws Exception{
         User user =   userService.findByUserId(userId);
-         return user ;
+        return user ;
     }
 }
