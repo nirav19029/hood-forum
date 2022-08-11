@@ -16,11 +16,13 @@ let Defaultuser = {
 
 const App = () => {
   // let data = require("./data/post.json");
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState("");
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(""); // set postid of active(clicked) user
   const [posts, setPosts] = useState([]); // all post
   const [activePostData, setActivePostData] = useState({}); // set all deatil of active user
+
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     syncToLocalStorage();
@@ -31,17 +33,21 @@ const App = () => {
       document.getElementById("signInDiv").hidden = true;
     } else {
       /* global google */
-      google.accounts.id.initialize({
+
+      window.google?.accounts.id.initialize({
         client_id:
           "693462110352-tf62k67vg2fokedt87ior7sroecpev7l.apps.googleusercontent.com",
         callback: handleCallbackResponse,
       });
-      google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-        theme: "outline",
-        size: "large",
-      });
+      window.google?.accounts.id.renderButton(
+        document.getElementById("signInDiv"),
+        {
+          theme: "outline",
+          size: "large",
+        }
+      );
       document.getElementById("signInDiv").hidden = false;
-      google.accounts.id.prompt();
+      window.google?.accounts.id.prompt();
     }
   }, [user]);
 
@@ -56,7 +62,7 @@ const App = () => {
 
   function syncToLocalStorage() {
     let user = localStorage.getItem("user");
-    console.log({ user });
+    // console.log({ user });
     if (!user) {
       setUser(null);
     } else {
@@ -114,9 +120,14 @@ const App = () => {
   //------Google auth ends------------------------
 
   const getAllPosts = async () => {
-    const { data } = await axios.get(
-      "http://192.168.5.128:8080/forum/v1/post/all"
-    );
+    const url = "http://192.168.5.128:8080/forum/v1/post/all";
+    const { data } = await axios({
+      method: "get",
+      url: url,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     // console.log(data);
     setPosts(data);
   };
@@ -190,7 +201,7 @@ const App = () => {
             </div>
           )}
           <div className="modal-wrapper">
-            <AddFormModal />
+            <AddFormModal getAllPosts={getAllPosts} />
           </div>
         </div>
       )}

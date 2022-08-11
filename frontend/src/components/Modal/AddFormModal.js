@@ -22,18 +22,27 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
+export default function BasicModal({ getAllPosts }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [topic, setTopic] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleTopicChange = (event) => {
+  const user = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
+  let userId = null;
+
+  if (user) {
+    userId = JSON.parse(user).userId;
+    // console.log(userId);
+  }
+
+  const handleTitleChange = (event) => {
     const inputTopic = event.target.value;
     // console.log(inputTopic);
-    setTopic(inputTopic);
+    setTitle(inputTopic);
   };
 
   const handleDescriptionChange = (event) => {
@@ -45,6 +54,54 @@ export default function BasicModal() {
   const handleImgUpload = (event) => {
     // console.log(event.target.files[0]);
     setSelectedImage(event.target.files[0]);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // let postFormData = new FormData();
+    // postFormData.append("title", title);
+    // postFormData.append("description", description);
+    // postFormData.append("userId", userId);
+    let data = new FormData();
+    data.append("title", title);
+    data.append("userId", userId);
+    data.append("description", description);
+    if (selectedImage) data.append("image", selectedImage);
+    // data.append("", "");
+
+    try {
+      let response = await axios({
+        method: "post",
+        url: api,
+        data: data,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      console.log(response);
+
+      if (response.status === 201 && response.data) {
+        handleClose();
+        getAllPosts();
+        setSelectedImage(null);
+      }
+    } catch (error) {
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+    }
   };
 
   return (
@@ -73,7 +130,7 @@ export default function BasicModal() {
               required
               style={{ width: "100%" }}
               id="topic"
-              onChange={(e) => handleTopicChange(e)}
+              onChange={(e) => handleTitleChange(e)}
             />
           </div>
 
@@ -132,6 +189,7 @@ export default function BasicModal() {
               variant="contained"
               color="success"
               style={{ marginLeft: "1rem" }}
+              onClick={handleSubmit}
             >
               Post
             </Button>
