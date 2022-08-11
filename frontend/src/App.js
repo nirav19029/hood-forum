@@ -8,6 +8,8 @@ import axios from "axios";
 
 const SIGNIN_ENDPOINT =
   "http://192.168.5.128:8080/forum/v1/signin?googleIdToken=";
+import CancelIcon from '@mui/icons-material/Cancel';
+// import userContext from "./Contexts/userContext";
 
 let Defaultuser = {
   id: "123",
@@ -119,6 +121,10 @@ const App = () => {
   }
   //------Google auth ends------------------------
 
+
+
+
+
   const getAllPosts = async () => {
     const url = "http://192.168.5.128:8080/forum/v1/post/all";
     const { data } = await axios({
@@ -132,9 +138,12 @@ const App = () => {
     setPosts(data);
   };
 
+
+
   useEffect(() => {
     window.scroll(0, 0);
     getAllPosts();
+
   }, []);
 
   //---- function for filtering data of active user-------------------
@@ -145,9 +154,7 @@ const App = () => {
         if (post.postId == active) {
           return true;
         }
-      });
-      console.log("xyz");
-      console.log({ post });
+      })
       setActivePostData(post);
     }
   }, [active]); // ActivePostData change wrt to active

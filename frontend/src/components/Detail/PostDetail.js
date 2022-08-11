@@ -6,11 +6,13 @@ import Chip from "@mui/material/Chip";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import Stack from "@mui/material/Stack";
+import CancelIcon from '@mui/icons-material/Cancel';
+import { positions } from "@mui/system";
 // import userContext from "../../Contexts/userContext";
 
 const PostDetail = (props) => {
   let [comment, setComment] = useState([]); // for viewing comment
-
+  const [userDetail, setUserDetail] = useState ({});
   // const user = useContext(userContext);
   let user = {
     id: "123",
@@ -55,6 +57,8 @@ const PostDetail = (props) => {
 
   return (
     <div className="detail-container">
+
+    
       <Card value={props.postData} className="custom" />
       <br></br>
 
