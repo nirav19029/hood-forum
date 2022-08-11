@@ -30,6 +30,7 @@
     align-items: center;
     margin-right: 2rem;
     color: black;
+    position: relative;
 }
 
 .info {
