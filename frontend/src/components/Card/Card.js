@@ -9,32 +9,61 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 import moment from 'moment';
 
 import "./Card.css";
+import axios from "axios";
 
 const Card = (props) => {
 
   const [userDetail, setUserDetail] = useState ({});
-  
+  const token = localStorage.getItem("token");
+
   let currentTimestamp = props.value.lastModifiedDate;
   let dateofPost = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp)
 
-
-  //------------------userDetail-----------------------------------------------------
-  useEffect(() => {
-    console.log(props);
+  async function fetchDetails(){
     let url = "http://192.168.5.128:8080/forum/v1/user/" + props.value.userId;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) =>{
-        // console.log(data);
-        setUserDetail(data)
-      });
+
+    try{
+
+        let response = await axios({
+          method:"get",
+          url:url,
+          headers:{
+            Authorization:"Bearer " + token,
+          }
+        })
+
+        let {data} = response ;
+        console.log(data) ;
+        setUserDetail(data);
+    }catch(error){
+
+      if (error.response) {
+        // Request made and server responded
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log("Error", error.message);
+      }
+    }
+ 
+  }
+  //------------------userDetail-----------------------------------------------------
+  useEffect(  () => {
+    console.log(props);
+    fetchDetails()
+   
   },[])
   
   
   const handleClick = event => {
     event.currentTarget.classList.toggle('afterClick');
   }
-
+console.log(userDetail.image_url)
 
   return (
     <div className={"card-container " + props.className} id={props.value.postId} onClick={() => props.setActive(props.value.postId)}>
