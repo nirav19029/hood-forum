@@ -8,22 +8,31 @@ import ShareIcon from "@mui/icons-material/Share";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 import moment from 'moment';
 
+import {  Spin, Alert } from 'antd';
+
 import "./Card.css";
 import axios from "axios";
+
+const SERVER_ADDRESS = "https://project-brew.herokuapp.com/" ;
 
 const Card = (props) => {
 
   const [userDetail, setUserDetail] = useState ({});
+  const[loading , setLoading] = useState(false) ;
   const token = localStorage.getItem("token");
 
   let currentTimestamp = props.value.lastModifiedDate;
   let dateofPost = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(currentTimestamp)
 
   async function fetchDetails(){
-    let url = "http://192.168.5.128:8080/forum/v1/user/" + props.value.userId;
+    console.log({props})
+    if(props?.value?.userId){
+
+    let url = SERVER_ADDRESS+ "forum/v1/user/" + props.value.userId;
 
     try{
 
+      setLoading(true)
         let response = await axios({
           method:"get",
           url:url,
@@ -49,7 +58,13 @@ const Card = (props) => {
         // Something happened in setting up the request that triggered an Error
         console.log("Error", error.message);
       }
+    }finally{
+      setLoading(false)
+
     }
+
+  }
+
  
   }
   //------------------userDetail-----------------------------------------------------
@@ -60,15 +75,25 @@ const Card = (props) => {
   },[])
   
   
-  const handleClick = event => {
+  const handleClick = event => {  
     event.currentTarget.classList.toggle('afterClick');
   }
 console.log(userDetail.image_url)
 
+
   return (
+    
     <div className={"card-container " + props.className} id={props.value.postId} onClick={() => props.setActive(props.value.postId)}>
-      {/* Userinfo */}
-      <div className="container">
+     {loading ? (
+      <div className="nb-spinner">
+
+      <Spin spinning={loading} size="large"  ></Spin>
+      </div>
+      ) : 
+
+     (
+      <div>
+       <div className="container">
         <div className="data" >
         <Avatar alt="Cindy Baker" src={userDetail.image_url} />
           <div className="info">
@@ -81,6 +106,8 @@ console.log(userDetail.image_url)
           <MoreVertIcon />
         </div>
       </div>
+
+{/* <div> */}
 
       <br />
 
@@ -108,7 +135,10 @@ console.log(userDetail.image_url)
           <ShareIcon id="shareIcon" />
           Share
         </Button>
-      </div>
+      </div> 
+</div>
+      )}
+
     </div>
   );
 };

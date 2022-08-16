@@ -7,7 +7,9 @@ import PostAddIcon from "@mui/icons-material/PostAdd";
 import "./AddFormModal.css";
 import axios from "axios";
 
-const api = "http://192.168.5.128:8080/forum/v1/createPost";
+const SERVER_ADDRESS = "https://project-brew.herokuapp.com/" ;
+
+const api = SERVER_ADDRESS + "/forum/v1/createPost";
 
 const style = {
   position: "relative",

@@ -6,8 +6,10 @@ import PostDetail from "./components/Detail/PostDetail";
 import "./App.css";
 import axios from "axios";
 
-const SIGNIN_ENDPOINT =
-  "http://192.168.5.128:8080/forum/v1/signin?googleIdToken=";
+const SERVER_ADDRESS = "https://project-brew.herokuapp.com/";
+
+const SIGNIN_ENDPOINT = SERVER_ADDRESS + "/forum/v1/signin?googleIdToken=";
+
 import CancelIcon from '@mui/icons-material/Cancel';
 // import userContext from "./Contexts/userContext";
 
@@ -22,7 +24,6 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [active, setActive] = useState(""); // set postid of active(clicked) user
   const [posts, setPosts] = useState([]); // all post
-  const [activePostData, setActivePostData] = useState({}); // set all deatil of active user
 
   const token = localStorage.getItem("token");
 
@@ -126,7 +127,7 @@ const App = () => {
 
 
   const getAllPosts = async () => {
-    const url = "http://192.168.5.128:8080/forum/v1/post/all";
+    const url = SERVER_ADDRESS + "/forum/v1/post/all";
     const { data } = await axios({
       method: "get",
       url: url,
@@ -148,16 +149,26 @@ const App = () => {
 
   //---- function for filtering data of active user-------------------
 
-  useEffect(() => {
-    if (active != "") {
-      let post = posts.find((post) => {
-        if (post.postId == active) {
-          return true;
-        }
-      })
-      setActivePostData(post);
+  // useEffect(() => {
+  //   if (active != "") {
+  //     let post = posts.find((post) => {
+  //       if (post.postId == active) {
+  //         return true;
+  //       }
+  //     })
+  //     setActivePostData(post);
+  //   }
+  // }, [active]); // ActivePostData change wrt to active
+
+
+  let activePostData = posts.find((post) => {
+    if (post.postId == active) {
+      return true;
     }
-  }, [active]); // ActivePostData change wrt to active
+  })
+
+  console.log({ activePostData, active })
+
 
   return (
     <div className="App">
@@ -169,44 +180,36 @@ const App = () => {
           <div>
             <button onClick={logout}>logout</button>
           </div>
-          {/* // <userContext.Provider value={user}> */}
+          <div style={{ display: "flex" }}>
+            <div style={{ width: "100%"}}>
+              {posts.map((post) => {
+                return (
+                  <div key={post.postId}>
+                    <Card
+                      key={post.postId}
+                      value={post}
+                      setActive={setActive}
+                      className="card classname"
+                    />
+                  </div>
+                );
+              })}
+            </div>
 
-          {active !== "" ? (
-            <div className="row">
-              <div className="col-8">
+            {active !== "" ? (
+              <div style={{ marginLeft: "10px" , width:"40%"}}>
+
                 <div>
-                  {posts.map((post) => {
-                    return (
-                      <div key={post.postId}>
-                        <Card
-                          value={post}
-                          setActive={setActive}
-                          className="card classname"
-                        />
-                      </div>
-                    );
-                  })}
+                  <PostDetail key={active} active={active} postData={activePostData} />
                 </div>
               </div>
-              <div className="col-4">
-                <PostDetail active={active} postData={activePostData} />
-              </div>
-            </div>
-          ) : (
-            <div className="row">
-              <div className="col-12">
-                <div className="main-data">
-                  {posts.map((e) => {
-                    return (
-                      <div key={e.postId}>
-                        <Card value={e} setActive={setActive} />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          )}
+            ) : ""
+            }
+
+
+          </div>
+
+
           <div className="modal-wrapper">
             <AddFormModal getAllPosts={getAllPosts} />
           </div>

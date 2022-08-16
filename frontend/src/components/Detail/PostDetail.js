@@ -10,10 +10,15 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import { positions } from "@mui/system";
 // import userContext from "../../Contexts/userContext";
 
+
+const SERVER_ADDRESS = "https://project-brew.herokuapp.com/" ;
+
 const PostDetail = (props) => {
   let [comment, setComment] = useState([]); // for viewing comment
   const [userDetail, setUserDetail] = useState ({});
   // const user = useContext(userContext);
+
+  console.log(props)
   let user = {
     id: "123",
     name: "nproker",
@@ -24,13 +29,13 @@ const PostDetail = (props) => {
   ///-------------commentView--------------------------------------
 
   useEffect(() => {
-    let url =
-      "http://192.168.5.128:8080/forum/v1/post/comment/62e8bd8a3160e9725a0fc7ac";
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setComment([...data]);
-      });
+    // let url =
+    // SERVER_ADDRESS + "/forum/v1/post/comment/62e8bd8a3160e9725a0fc7ac";
+    // fetch(url)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setComment([...data]);
+    //   });
   }, []);
   //------------------------------------------------------------------------------------
 
