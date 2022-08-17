@@ -19,10 +19,10 @@ const PostDetail = (props) => {
   // const user = useContext(userContext);
 
   console.log(props)
-  let user = {
-    id: "123",
-    name: "nproker",
-  };
+
+
+  let user = localStorage.getItem("user")
+
 
   let loggedInUserId = user.id;
 
@@ -66,7 +66,21 @@ const PostDetail = (props) => {
     
       <Card value={props.postData} className="custom" />
       <br></br>
-
+      {/* <div
+      style={{
+        marginLeft: "40%",
+      }}
+    >
+      <h2>How to use TextField Component in ReactJS?</h2>
+      <TextField
+        value={name}
+        label="Enter your name"
+        onChange={(e) => {
+          setName(e.target.value);
+        }}
+      />
+      <h3>Your Enter Value is: {name} </h3>
+    </div> */}
       {comment.length > 0 ? (
         <div id="comments-view">
           {comment.map((comm) => {

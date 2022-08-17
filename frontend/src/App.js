@@ -6,7 +6,7 @@ import PostDetail from "./components/Detail/PostDetail";
 import "./App.css";
 import axios from "axios";
 
-const SERVER_ADDRESS = "https://project-brew.herokuapp.com/";
+const SERVER_ADDRESS = "https://project-brew.herokuapp.com";
 
 const SIGNIN_ENDPOINT = SERVER_ADDRESS + "/forum/v1/signin?googleIdToken=";
 
@@ -115,9 +115,9 @@ const App = () => {
       }
     }
 
-    var userObject = jwt_decode(response.credential);
-    console.log(userObject);
-    setUser(userObject);
+    // var userObject = jwt_decode(response.credential);
+    // console.log(userObject);
+    // setUser(userObject);
     document.getElementById("signInDiv").hidden = true;
   }
   //------Google auth ends------------------------
